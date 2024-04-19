@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 15:34:01 by tilman            #+#    #+#             */
-/*   Updated: 2024/04/18 15:42:01 by tilman           ###   ########.fr       */
+/*   Created: 2024/04/16 16:21:33 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/16 16:50:02 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+int	ft_isalpha(char c);
+int	ft_isdigit(char c);
 
-size_t	str_length(const char *str) {
-	size_t length;
-
-	length = 0;
-	while (str[length] != '\0') {
-		length++;
-	}
-	return length;
+int	ft_isalnum(char c)
+{
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (8);
+	else
+		return (0);
 }

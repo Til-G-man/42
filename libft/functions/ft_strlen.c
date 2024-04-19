@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 15:02:38 by tilman            #+#    #+#             */
-/*   Updated: 2024/04/18 16:47:52 by tilman           ###   ########.fr       */
+/*   Created: 2024/04/17 11:56:51 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/19 11:53:29 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-size_t	str_length(const char *str);
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlen(const char *str)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
 
 	i = 0;
-	j = 0;
-    while (dst[i] && i < dstsize - 1)
-		i++;
-	while (src[j] && i < dstsize - 1)
+	while (str[i])
 	{
-		dst[i] = src[j];
 		i++;
-		j++;
 	}
-	dst[i] = '\0';
-	return (str_length(dst));
+	return (i);
 }
