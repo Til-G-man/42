@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:53:04 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/22 10:51:35 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:55:12 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ void testing_ft_strlcat(void) {
 	char dest1[50] = "Hello";
 	char dest2[50] = "Hello";
 	const char *src = " World!";
-	size_t sizes[] = {5, 10, 15, 20, 50};
+	size_t sizes[] = {0, 5, 10, 15, 20, 50};
 	size_t result_original, result_custom;
 
 	printf("=== Testing ft_strlcat ===\n");
@@ -296,6 +296,343 @@ void testing_ft_strlcat(void) {
 	printf("\n\n\n");
 }
 
+void testing_ft_toupper(void)
+{
+	char test_chars[] = {'a', 'z', 'A', 'Z', '0', '%', '\n', 127, 'm', 'N'};
+	int i;
+	char result;
+	char expected;
+
+	printf("=== Testing ft_toupper ===\n");
+	for (i = 0; i < sizeof(test_chars) / sizeof(test_chars[0]); i++)
+	{
+		result = ft_toupper(test_chars[i]);
+		expected = toupper(test_chars[i]);
+		if (result == expected)
+		{
+			printf("\033[0;32mTest successful for: '%c' -> '%c'\033[0m\n", test_chars[i], result);
+		}
+		else
+		{
+			printf("\033[0;31mTest failed for: '%c' -> '%c' (Expected: '%c')\033[0m\n", test_chars[i], result, expected);
+		}
+	}
+	printf("\n\n\n");
+}
+
+void testing_ft_tolower(void)
+{
+	char test_chars[] = {'A', 'Z', 'a', 'z', '0', '%', '\n', 127, 'M', 'n'};
+	int i;
+	char result;
+	char expected;
+
+	printf("=== Testing ft_tolower ===\n");
+	for (i = 0; i < sizeof(test_chars) / sizeof(test_chars[0]); i++)
+	{
+		result = ft_tolower(test_chars[i]);
+		expected = tolower(test_chars[i]);
+		if (result == expected)
+		{
+			printf("\033[0;32mTest successful for: '%c' -> '%c'\033[0m\n", test_chars[i], result);
+		}
+		else
+		{
+			printf("\033[0;31mTest failed for: '%c' -> '%c' (Expected: '%c')\033[0m\n", test_chars[i], result, expected);
+		}
+	}
+	printf("\n\n\n");
+}
+
+void testing_ft_strchr(void)
+{
+    const char *test_strings[] = {"Hello, World!", "", "1234567890", "A single character", "\n\t", "abcdefg\0hijklmnop"};
+    int test_chars[] = {'W', 'H', '0', 'Z', '\n', 0};
+    char *result;
+    char *expected;
+    int i = 0, j;
+
+    printf("=== Testing ft_strchr ===\n");
+    while (i < sizeof(test_strings) / sizeof(test_strings[0]))
+    {
+        j = 0;
+        while (j < sizeof(test_chars) / sizeof(test_chars[0]))
+        {
+            result = ft_strchr(test_strings[i], test_chars[j]);
+            expected = strchr(test_strings[i], test_chars[j]);
+            if ((result == expected) || (result && expected && *result == *expected))
+            {
+                printf("\033[0;32mTest successful for string: \"%s\" with char: '%c' -> Result: '%s'\033[0m\n", test_strings[i], test_chars[j], result ? result : "NULL");
+            }
+            else
+            {
+                printf("\033[0;31mTest failed for string: \"%s\" with char: '%c' -> Expected: '%s', Got: %s\033[0m\n", test_strings[i], test_chars[j], expected ? expected : "NULL", result ? result : "NULL");
+            }
+            j++;
+        }
+        i++;
+    }
+    printf("\n\n\n");
+}
+
+void testing_ft_strrchr(void)
+{
+	char *test_str = "Hello, World!";
+	char *result;
+	char *expected_result;
+	int test_char;
+
+	printf("=== Testing ft_strrchr ===\n");
+
+	// Test 1: Suchen eines Zeichens, das vorhanden ist
+	test_char = 'o';
+	result = ft_strrchr(test_str, test_char);
+	expected_result = strrchr(test_str, test_char);
+	if (result == expected_result)
+		printf("\033[32mTest 1 passed: ft_strrchr(\"%s\", '%c') = %s\033[0m\n", test_str, test_char, result);
+	else
+		printf("\033[31mTest 1 failed: ft_strrchr(\"%s\", '%c') = %s, expected %s\033[0m\n", test_str, test_char, result, expected_result);
+
+	// Test 2: Suchen des Null-Terminators
+	test_char = '\0';
+	result = ft_strrchr(test_str, test_char);
+	expected_result = strrchr(test_str, test_char);
+	if (result == expected_result)
+		printf("\033[32mTest 2 passed: ft_strrchr(\"%s\", '%c') = %s\033[0m\n", test_str, '\0', result);
+	else
+		printf("\033[31mTest 2 failed: ft_strrchr(\"%s\", '%c') = %s, expected %s\033[0m\n", test_str, '\0', result, expected_result);
+
+	// Test 3: Suchen eines Zeichens, das nicht vorhanden ist
+	test_char = 'x';
+	result = ft_strrchr(test_str, test_char);
+	expected_result = strrchr(test_str, test_char);
+	if (result == expected_result)
+		printf("\033[32mTest 3 passed: ft_strrchr(\"%s\", '%c') = %s\033[0m\n", test_str, test_char, result);
+	else
+		printf("\033[31mTest 3 failed: ft_strrchr(\"%s\", '%c') = %s, expected %s\033[0m\n", test_str, test_char, result, expected_result);
+
+	printf("\n\n\n");
+}
+
+void testing_ft_strncmp(void)
+{
+    char *s1 = "Hello World";
+    char *s2 = "Hello World";
+    char *s3 = "Hello world";
+    int n = 10;
+    int result;
+    int expected;
+
+    printf("=== Testing ft_strncmp ===\n");
+
+    // Test 1: Identische Strings
+    result = ft_strncmp(s1, s2, n);
+    expected = strncmp(s1, s2, n);
+    if (result == expected)
+        printf("\033[0;32mTest 1 passed: ft_strncmp(\"%s\", \"%s\", %d) = %d, strncmp = %d\033[0m\n", s1, s2, n, result, expected);
+    else
+        printf("\033[0;31mTest 1 failed: ft_strncmp(\"%s\", \"%s\", %d) = %d, strncmp = %d\033[0m\n", s1, s2, n, result, expected);
+
+    // Test 2: Unterschiedliche Strings
+    result = ft_strncmp(s1, s3, n);
+    expected = strncmp(s1, s3, n);
+    if ((result < 0 && expected < 0) || (result == expected))
+        printf("\033[0;32mTest 2 passed: ft_strncmp(\"%s\", \"%s\", %d) = %d, strncmp = %d\033[0m\n", s1, s3, n, result, expected);
+    else
+        printf("\033[0;31mTest 2 failed: ft_strncmp(\"%s\", \"%s\", %d) = %d, strncmp = %d\033[0m\n", s1, s3, n, result, expected);
+
+    // Test 3: n = 0
+    n = 0;
+    result = ft_strncmp(s1, s3, n);
+    expected = strncmp(s1, s3, n);
+    if (result == expected)
+        printf("\033[0;32mTest 3 passed: ft_strncmp(\"%s\", \"%s\", %d) = %d, strncmp = %d\033[0m\n", s1, s3, n, result, expected);
+    else
+        printf("\033[0;31mTest 3 failed: ft_strncmp(\"%s\", \"%s\", %d) = %d, strncmp = %d\033[0m\n", s1, s3, n, result, expected);
+
+    printf("\n\n\n");
+}
+
+void testing_ft_memchr(void)
+{
+	const char str[] = "Example string";
+	int c = 'e';
+	size_t n = 14;
+	void *result;
+	void *expected;
+
+	printf("=== Testing ft_memchr ===\n");
+
+	// Test 1: Charakter im String vorhanden
+	result = ft_memchr(str, c, n);
+	expected = memchr(str, c, n);
+	if (result == expected)
+		printf("\033[0;32mTest 1 passed: Character '%c' found in \"%s\". ft_memchr = %p, memchr = %p\033[0m\n", c, str, result, expected);
+	else
+		printf("\033[0;31mTest 1 failed: Character '%c' not correctly found in \"%s\". ft_memchr = %p, memchr = %p\033[0m\n", c, str, result, expected);
+
+	// Test 2: Charakter nicht im String (überprüft die Grenze)
+	c = 'z';
+	result = ft_memchr(str, c, n);
+	expected = memchr(str, c, n);
+	if (result == expected)
+		printf("\033[0;32mTest 2 passed: Character '%c' not found in \"%s\" as expected. ft_memchr = %p, memchr = %p\033[0m\n", c, str, result, expected);
+	else
+		printf("\033[0;31mTest 2 failed: Character '%c' incorrectly found in \"%s\". ft_memchr = %p, memchr = %p\033[0m\n", c, str, result, expected);
+
+	// Test 3: Test mit n = 0
+	n = 0;
+	result = ft_memchr(str, 'e', n);
+	expected = memchr(str, 'e', n);
+	if (result == expected)
+		printf("\033[0;32mTest 3 passed: No search performed with n = 0. ft_memchr = %p, memchr = %p\033[0m\n", result, expected);
+	else
+		printf("\033[0;31mTest 3 failed: Incorrect behavior with n = 0. ft_memchr = %p, memchr = %p\033[0m\n", result, expected);
+
+	printf("\n\n\n");
+}
+
+void testing_ft_memcmp(void)
+{
+	printf("=== Testing ft_memcmp ===\n");
+
+	// Test 1: Vergleich identischer Strings
+	char str1[] = "Hello, World!";
+	char str2[] = "Hello, World!";
+	int result = ft_memcmp(str1, str2, 13);
+	if (result == 0)
+		printf("\033[0;32mTest 1 passed: Identical strings. ft_memcmp = %d\033[0m\n", result);
+	else
+		printf("\033[0;31mTest 1 failed: Identical strings. ft_memcmp = %d\033[0m\n", result);
+
+	// Test 2: Vergleich unterschiedlicher Strings
+	char str3[] = "Hello, World!";
+	char str4[] = "Hello, world!";
+	result = ft_memcmp(str3, str4, 13);
+	if (result != 0)
+		printf("\033[0;32mTest 2 passed: Different strings. ft_memcmp = %d\033[0m\n", result);
+	else
+		printf("\033[0;31mTest 2 failed: Different strings. ft_memcmp = %d\033[0m\n", result);
+
+	// Test 3: Vergleich mit n = 0
+	result = ft_memcmp(str1, str2, 0);
+	if (result == 0)
+		printf("\033[0;32mTest 3 passed: n = 0. ft_memcmp = %d\033[0m\n", result);
+	else
+		printf("\033[0;31mTest 3 failed: n = 0. ft_memcmp = %d\033[0m\n", result);
+
+	// Test 4: Vergleich der ersten n Bytes, wobei n kleiner als die Stringlänge ist
+	result = ft_memcmp(str1, str4, 5); // Vergleicht nur "Hello"
+	if (result == 0)
+		printf("\033[0;32mTest 4 passed: First n bytes are identical. ft_memcmp = %d\033[0m\n", result);
+	else
+		printf("\033[0;31mTest 4 failed: First n bytes are identical. ft_memcmp = %d\033[0m\n", result);
+
+	printf("\n\n\n");
+}
+
+void testing_ft_strnstr(void)
+{
+	printf("=== Testing ft_strnstr ===\n");
+
+	char haystack[] = "Hello, World!";
+	char needle1[] = "World";
+	char needle2[] = "world";
+	char needle3[] = "";
+	char needle4[] = "!";
+	size_t len = strlen(haystack);
+	char *result;
+	char *expected;
+
+	// Test 1: Needle is found in the haystack
+	result = ft_strnstr(haystack, needle1, len);
+	expected = strnstr(haystack, needle1, len);
+	if (result == expected)
+		printf("\033[0;32mTest 1 passed: Needle '%s' found in '%s'. Result: %s\033[0m\n", needle1, haystack, result);
+	else
+		printf("\033[0;31mTest 1 failed: Needle '%s' not correctly found in '%s'. Expected: %s, Got: %s\033[0m\n", needle1, haystack, expected, result);
+
+	// Test 2: Needle is not found due to case sensitivity
+	result = ft_strnstr(haystack, needle2, len);
+	expected = strnstr(haystack, needle2, len);
+	if (result == expected)
+		printf("\033[0;32mTest 2 passed: Needle '%s' correctly not found in '%s'.\033[0m\n", needle2, haystack);
+	else
+		printf("\033[0;31mTest 2 failed: Needle '%s' incorrectly found in '%s'. Expected: %s, Got: %s\033[0m\n", needle2, haystack, expected, result);
+
+	// Test 3: Empty needle
+	result = ft_strnstr(haystack, needle3, len);
+	expected = strnstr(haystack, needle3, len);
+	if (result == expected)
+		printf("\033[0;32mTest 3 passed: Empty needle returns haystack: %s\033[0m\n", result);
+	else
+		printf("\033[0;31mTest 3 failed: Empty needle does not return haystack correctly. Expected: %s, Got: %s\033[0m\n", expected, result);
+
+	// Test 4: Needle at the end of haystack
+	result = ft_strnstr(haystack, needle4, len);
+	expected = strnstr(haystack, needle4, len);
+	if (result == expected)
+		printf("\033[0;32mTest 4 passed: Needle '%s' found at the end of '%s'. Result: %s\033[0m\n", needle4, haystack, result);
+	else
+		printf("\033[0;31mTest 4 failed: Needle '%s' not correctly found at the end of '%s'. Expected: %s, Got: %s\033[0m\n", needle4, haystack, expected, result);
+
+	// Test 5: Searching beyond the length of haystack
+	result = ft_strnstr(haystack, needle1, 8); // Intentionally small length
+	expected = strnstr(haystack, needle1, 8);
+	if (result == expected)
+		printf("\033[0;32mTest 5 passed: Needle '%s' not found when searching only the first 8 characters of '%s'.\033[0m\n", needle1, haystack);
+	else
+		printf("\033[0;31mTest 5 failed: Incorrect result when searching only the first 8 characters of '%s' for '%s'. Expected: %s, Got: %s\033[0m\n", haystack, needle1, expected, result);
+
+	printf("\n\n\n");
+}
+void testing_ft_atoi(void)
+{
+	printf("=== Testing ft_atoi ===\n");
+
+	// Test cases
+	char *test_strings[] = {
+		"42",           // Standard case
+		"-42",          // Negative number
+		"0",            // Zero
+		"+42",          // Positive sign
+		"   42",        // Leading spaces
+		"42abc",        // Trailing characters
+		"-0",           // Negative zero
+		"2147483647",   // INT_MAX
+		"-2147483648",  // INT_MIN
+		"9999999999",   // Overflow
+		"-9999999999",  // Underflow
+		"+-42",         // Invalid format
+		"++42",         // Invalid format
+		"--42"          // Invalid format
+	};
+
+	int expected;
+	int result;
+	int test_passed;
+	for (int i = 0; i < sizeof(test_strings) / sizeof(test_strings[0]); i++)
+	{
+		result = ft_atoi(test_strings[i]);
+		expected = atoi(test_strings[i]);
+		test_passed = (result == expected);
+
+		if (test_passed)
+		{
+			printf("\033[0;32mTest passed: '%s' -> %d (Expected: %d)\033[0m\n", test_strings[i], result, expected);
+		}
+		else
+		{
+			printf("\033[0;31mTest failed: '%s' -> %d (Expected: %d)\033[0m\n", test_strings[i], result, expected);
+		}
+	}
+
+	printf("\n\n\n");
+}
+
+
+
+
 int	main(void)
 {
 	testing_ft_isalpha();
@@ -310,5 +647,15 @@ int	main(void)
 	testing_ft_memmove();
 	testing_ft_strlcpy();
 	testing_ft_strlcat();
+	testing_ft_toupper();
+	testing_ft_tolower();
+	testing_ft_strchr();
+	testing_ft_strrchr();
+	testing_ft_strncmp();
+	testing_ft_memchr();
+	testing_ft_memcmp();
+	testing_ft_strnstr();
+	testing_ft_atoi();
+	printf("_________________\nAll functions wihout external libraries tested \n_________________\n");
 }
 

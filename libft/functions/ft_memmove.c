@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 20:52:47 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/22 11:05:05 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:09:04 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	else if (dest > src)
 	{
-		count = n - 1; // Start vom letzten Element
+		count = n - 1;
 		while (count >= 0)
-	{
-		d[count] = s[count];
-		count--;
-	}
+		{
+			d[count] = s[count];
+			count--;
+		}
 	}
 	return (dest);
 }

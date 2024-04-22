@@ -8,18 +8,27 @@ ARFLAGS = rcs
 
 NAME = libft.a
 
-SRC = functions/ft_isalpha.c \
-      functions/ft_isdigit.c \
-      functions/ft_isalnum.c \
-      functions/ft_isascii.c \
-      functions/ft_isprint.c \
-      functions/ft_strlen.c \
-      functions/ft_memset.c \
-      functions/ft_bzero.c \
-      functions/ft_memcpy.c \
-      functions/ft_memmove.c \
-      functions/ft_strlcat.c \
-      functions/ft_strlcpy.c
+SRC = 	functions/ft_bzero.c \
+functions/ft_isalnum.c \
+functions/ft_isalpha.c \
+functions/ft_isascii.c \
+functions/ft_isdigit.c \
+functions/ft_isprint.c \
+functions/ft_memchr.c \
+functions/ft_memcmp.c \
+functions/ft_memcpy.c \
+functions/ft_memmove.c \
+functions/ft_memset.c \
+functions/ft_strchr.c \
+functions/ft_strlcat.c \
+functions/ft_strlcpy.c \
+functions/ft_strlen.c \
+functions/ft_strncmp.c \
+functions/ft_strrchr.c \
+functions/ft_tolower.c \
+functions/ft_toupper.c \
+functions/ft_strnstr.c \
+functions/ft_atoi.c
 
 OBJ = $(SRC:.c=.o)
 

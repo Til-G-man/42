@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 20:06:53 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/19 18:23:55 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:08:20 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	int			count;
 
 	if (n == 0)
-	    return (dest);
+		return (dest);
 	d = (char *) dest;
 	s = (const char *) src;
 	count = (int) n;

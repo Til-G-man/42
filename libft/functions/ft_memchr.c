@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 11:55:35 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/22 12:07:54 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/22 14:22:29 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/22 14:56:04 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stddef.h>
 
-size_t	ft_strlen(const char *str);
+#include <stddef.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
+	size_t				counter;
+	const unsigned char	*str;
 
-	i = 0;
-	while (src[i] != '\0' && i < dstsize - 1)
+	str = (const unsigned char *)s;
+	counter = 0;
+	while (counter < n)
 	{
-		dst[i] = src[i];
-		i++;
+		if (*(str + counter) == (unsigned char)c)
+			return ((void *)(str + counter));
+		counter++;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	return (NULL);
 }

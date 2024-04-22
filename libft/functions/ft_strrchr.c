@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 11:55:35 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/22 12:07:54 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/22 13:15:35 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/22 13:51:19 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stddef.h>
 
-size_t	ft_strlen(const char *str);
+size_t	ft_strlen(const char *s);
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	int		counter;
+	char	*return_val;
 
-	i = 0;
-	while (src[i] != '\0' && i < dstsize - 1)
+	return_val = NULL;
+	counter = 0;
+	if (c == '\0')
+		return ((char *)s + ft_strlen(s));
+	while (s[counter])
 	{
-		dst[i] = src[i];
-		i++;
+		if (s[counter] == c)
+		{
+			return_val = (char *)s + counter;
+		}
+		counter++;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	if (return_val != NULL)
+		return (return_val);
+	return (NULL);
 }
