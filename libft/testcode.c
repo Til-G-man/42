@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:53:04 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/22 17:55:12 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:21:24 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -630,11 +630,139 @@ void testing_ft_atoi(void)
 	printf("\n\n\n");
 }
 
+void testing_ft_calloc(void)
+{
+    printf("=== Testing ft_calloc ===\n");
+
+    // Scenario 1: Allocate memory for an array of 5 integers
+    size_t nmemb1 = 5, size1 = sizeof(int);
+    int *ptr1 = ft_calloc(nmemb1, size1);
+    int *original_ptr1 = calloc(nmemb1, size1);
+    for (size_t i = 0; i < nmemb1; i++)
+    {
+        if (ptr1[i] != original_ptr1[i])
+        {
+            printf("\033[0;31mTest 1 failed: Memory content mismatch at index %zu\033[0m\n", i);
+            break;
+        }
+    }
+    printf("\033[0;32mTest 1 passed: Memory content matches\033[0m\n");
+
+    // Scenario 2: Allocate memory for an array of 10 chars
+    size_t nmemb2 = 10, size2 = sizeof(char);
+    char *ptr2 = ft_calloc(nmemb2, size2);
+    char *original_ptr2 = calloc(nmemb2, size2);
+    for (size_t i = 0; i < nmemb2; i++)
+    {
+        if (ptr2[i] != original_ptr2[i])
+        {
+            printf("\033[0;31mTest 2 failed: Memory content mismatch at index %zu\033[0m\n", i);
+            break;
+        }
+    }
+    printf("\033[0;32mTest 2 passed: Memory content matches\033[0m\n");
+
+    // Scenario 3: Allocate memory for an array of 0 elements of size 0 (should not fail)
+    size_t nmemb3 = 0, size3 = 0;
+    void *ptr3 = ft_calloc(nmemb3, size3);
+    void *original_ptr3 = calloc(nmemb3, size3);
+    if ((ptr3 == NULL && original_ptr3 != NULL) || (ptr3 != NULL && original_ptr3 == NULL))
+    {
+        printf("\033[0;31mTest 3 failed: One function returned NULL while the other did not\033[0m\n");
+    }
+    else
+    {
+        printf("\033[0;32mTest 3 passed: Both functions handled zero allocation correctly\033[0m\n");
+    }
+
+    free(ptr1);
+    free(original_ptr1);
+    free(ptr2);
+    free(original_ptr2);
+    free(ptr3);
+    free(original_ptr3);
+    printf("\n\n\n");
+}
+
+void testing_ft_strdup(void)
+{
+	char *test1 = "Hello, World!";
+	char *result;
+	char *expected;
+
+	printf("=== Testing ft_strdup ===\n");
+
+	// Test 1: Standard string
+	result = ft_strdup(test1);
+	expected = strdup(test1);
+	if (strcmp(result, expected) == 0)
+		printf("\033[0;32m[PASS]\033[0m Test 1: Original = \"%s\", ft_ = \"%s\"\n", expected, result);
+	else
+		printf("\033[0;31m[FAIL]\033[0m Test 1: Original = \"%s\", ft_ = \"%s\"\n", expected, result);
+	free(result);
+	free(expected);
+
+	// Test 2: Empty string
+	result = ft_strdup("");
+	expected = strdup("");
+	if (strcmp(result, expected) == 0)
+		printf("\033[0;32m[PASS]\033[0m Test 2: Original = \"%s\", ft_ = \"%s\"\n", expected, result);
+	else
+		printf("\033[0;31m[FAIL]\033[0m Test 2: Original = \"%s\", ft_ = \"%s\"\n", expected, result);
+	free(result);
+	free(expected);
+
+	 //Test 3: NULL pointer (Undefined behavior - just for demonstration, might crash)
+	 //This test is commented out because it's undefined behavior and might crash your program.
+	// result = ft_strdup(NULL);
+	// expected = strdup(NULL);
+	// printf("Test 3: Original = \"%s\", ft_ = \"%s\"\n", expected, result);
+
+	printf("\n\n\n");
+}
+
+void	test_ft_substr(void)
+{
+	char *result;
+
+	// Test 1: Normaler Fall
+	result = ft_substr("Hello World", 6, 5);
+	if (strcmp(result, "World") == 0)
+		printf("Test 1 erfolgreich: %s\n", result);
+	else
+		printf("Test 1 fehlgeschlagen: %s\n", result);
+	free(result); // Speicher freigeben
+
+	// Test 2: Startindex außerhalb des Strings
+	result = ft_substr("Hello", 10, 3);
+	if (result[0] == '\0') // Erwartet wird ein leerer String
+		printf("Test 2 erfolgreich: %s\n", result);
+	else
+		printf("Test 2 fehlgeschlagen: %s\n", result);
+	free(result);
+
+	// Test 3: Längere Länge als der String nach Start
+	result = ft_substr("Hello", 2, 10);
+	if (strcmp(result, "llo") == 0)
+		printf("Test 3 erfolgreich: %s\n", result);
+	else
+		printf("Test 3 fehlgeschlagen: %s\n", result);
+	free(result);
+
+	// Weitere Tests können hier hinzugefügt werden...
+}
+
+int main(void)
+{
+	test_ft_substr();
+	return 0;
+}
 
 
 
 int	main(void)
 {
+	printf("Part 1\n");
 	testing_ft_isalpha();
 	testing_ft_isdigit();
 	testing_ft_isalnum();
@@ -656,6 +784,9 @@ int	main(void)
 	testing_ft_memcmp();
 	testing_ft_strnstr();
 	testing_ft_atoi();
-	printf("_________________\nAll functions wihout external libraries tested \n_________________\n");
+	printf("_________________\n\nAll functions wihout external libraries tested \n_________________\n");
+	testing_ft_calloc();
+	testing_ft_strdup();
+	printf("Part 2\n");
 }
 

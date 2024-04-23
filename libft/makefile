@@ -28,7 +28,9 @@ functions/ft_strrchr.c \
 functions/ft_tolower.c \
 functions/ft_toupper.c \
 functions/ft_strnstr.c \
-functions/ft_atoi.c
+functions/ft_atoi.c \
+functions/ft_calloc.c \
+functions/ft_strdup.c
 
 OBJ = $(SRC:.c=.o)
 
