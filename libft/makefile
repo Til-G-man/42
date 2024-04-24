@@ -30,7 +30,11 @@ functions/ft_toupper.c \
 functions/ft_strnstr.c \
 functions/ft_atoi.c \
 functions/ft_calloc.c \
-functions/ft_strdup.c
+functions/ft_strdup.c \
+functions/ft_substr.c \
+functions/ft_strjoin.c \
+functions/ft_strtrim.c \
+functions/ft_split.c \
 
 OBJ = $(SRC:.c=.o)
 

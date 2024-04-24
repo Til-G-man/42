@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:29:37 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/22 16:55:34 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:24:15 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ int	ft_atoi(char *str)
 	sign = 1;
 	i = 0;
 	while (space(str[i]) == 1)
-	{
 		i++;
-	}
 	while (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
 			sign *= -1;
 		if (sign_count > 0)
-		    return (0);
+			return (0);
 		i++;
 		sign_count++;
 	}

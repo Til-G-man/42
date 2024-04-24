@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:53:04 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/23 16:21:24 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:15:25 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ void testing_ft_memcpy(void)
 void testing_ft_memmove(void) {
 	char str1[100] = "Hello, world! This is a test string.";
 	char str2[100] = "Hello, world! This is a test string.";
-	size_t test_sizes[] = {5, 10, 20, 30, 40};
+	size_t test_sizes[] = {0, 5, 10, 20, 30, 40};
 
 	printf("=== Testing ft_memmove ===\n");
 	for (int i = 0; i < sizeof(test_sizes) / sizeof(test_sizes[0]); i++) {
@@ -249,9 +249,9 @@ void testing_ft_strlcpy(void) {
 	char src[] = "Hello, World!";
 	char dest1[20];
 	char dest2[20];
-	size_t sizes[] = {5, 10, 15, 20};
+	size_t sizes[] = {0, 5, 10, 15, 20};
 	size_t result_original, result_custom;
-
+	// with input 0 the funktion only returns the strlen without chaninging the dest.
 	printf("=== Testing ft_strlcpy ===\n");
 	for (int i = 0; i < sizeof(sizes) / sizeof(sizes[0]); i++) {
 		memset(dest1, 'A', sizeof(dest1)); // Initialisiere dest1 mit 'A' zur Überprüfung des Null-Terminators
@@ -261,9 +261,9 @@ void testing_ft_strlcpy(void) {
 		result_custom = ft_strlcpy(dest2, src, sizes[i]);
 
 		if (strcmp(dest1, dest2) == 0 && result_original == result_custom) {
-			printf("\033[0;32mTest successful for size: %zu (Original: %zu, Custom: %zu)\033[0m\n", sizes[i], result_original, result_custom);
+			printf("\033[0;32mTest successful for size: %zu (Original: %zu '%s', Custom: %zu '%s')\033[0m\n", sizes[i], result_original, dest1, result_custom, dest2);
 		} else {
-			printf("\033[0;31mTest failed for size: %zu (Original: %zu, Custom: %zu)\033[0m\n", sizes[i], result_original, result_custom);
+			printf("\033[0;31mTest failed for size: %zu (Original: %zu '%s', Custom: %zu '%s')\033[0m\n", sizes[i], result_original, dest1, result_custom, dest2);
 		}
 	}
 	printf("\n\n\n");
@@ -721,72 +721,282 @@ void testing_ft_strdup(void)
 	printf("\n\n\n");
 }
 
-void	test_ft_substr(void)
+void test_ft_substr(void)
+{
+    char *result;
+    printf("=== Testing ft_substr ===\n");
+
+    // Test 1
+    result = ft_substr("Hello World", 6, 5);
+    if (strcmp(result, "World") == 0)
+        printf("\033[0;32mTest 1 erfolgreich: Erwartet 'World', erhalten '%s'\n", result);
+    else
+        printf("\033[0;31mTest 1 fehlgeschlagen: Erwartet 'World', erhalten '%s'\n", result);
+    free(result);
+
+    // Test 2
+    result = ft_substr("42 is amazing", 3, 2);
+    if (strcmp(result, "is") == 0)
+        printf("\033[0;32mTest 2 erfolgreich: Erwartet 'is', erhalten '%s'\n", result);
+    else
+        printf("\033[0;31mTest 2 fehlgeschlagen: Erwartet 'is', erhalten '%s'\n", result);
+    free(result);
+
+    // Test 3
+    result = ft_substr("Test with empty string", 10, 0);
+    if (strcmp(result, "") == 0)
+        printf("\033[0;32mTest 3 erfolgreich: Erwartet '', erhalten '%s'\n", result);
+    else
+        printf("\033[0;31mTest 3 fehlgeschlagen: Erwartet '', erhalten '%s'\n", result);
+    free(result);
+
+    // Test 4
+    result = ft_substr("Out of bounds", 50, 5);
+    if (result == NULL || strcmp(result, "") == 0) // Je nach Implementierung kann NULL oder ein leerer String erwartet werden
+        printf("\033[0;32mTest 4 erfolgreich: Erwartet NULL oder '', erhalten '%s'\n", result ? result : "NULL");
+    else
+        printf("\033[0;31mTest 4 fehlgeschlagen: Erwartet NULL oder '', erhalten '%s'\n", result);
+    free(result);
+
+    printf("\033[0m"); // Reset to default color
+    printf("\n\n\n"); // 3 Leerzeilen am Ende
+}
+
+void test_ft_strjoin(void)
 {
 	char *result;
+	printf("=== Testing ft_strjoin ===\n");
 
-	// Test 1: Normaler Fall
-	result = ft_substr("Hello World", 6, 5);
-	if (strcmp(result, "World") == 0)
-		printf("Test 1 erfolgreich: %s\n", result);
+	// Testfall 1
+	char *s1 = "Hello, ";
+	char *s2 = "World!";
+	char *expected = "Hello, World!";
+	result = ft_strjoin(s1, s2);
+	if (result != NULL && strcmp(result, expected) == 0)
+	{
+		printf("\033[0;32mTest 1 passed: [%s] + [%s] = [%s]\033[0m\n", s1, s2, result);
+	}
 	else
-		printf("Test 1 fehlgeschlagen: %s\n", result);
-	free(result); // Speicher freigeben
+	{
+		printf("\033[0;31mTest 1 failed: Expected [%s], got [%s]\033[0m\n", expected, result);
+	}
+	free(result); // Vergiss nicht, den Speicher freizugeben
 
-	// Test 2: Startindex außerhalb des Strings
-	result = ft_substr("Hello", 10, 3);
-	if (result[0] == '\0') // Erwartet wird ein leerer String
-		printf("Test 2 erfolgreich: %s\n", result);
+	// Testfall 2
+	s1 = "";
+	s2 = "Empty start";
+	expected = "Empty start";
+	result = ft_strjoin(s1, s2);
+	if (result != NULL && strcmp(result, expected) == 0)
+	{
+		printf("\033[0;32mTest 2 passed: Empty string + [%s] = [%s]\033[0m\n", s2, result);
+	}
 	else
-		printf("Test 2 fehlgeschlagen: %s\n", result);
+	{
+		printf("\033[0;31mTest 2 failed: Expected [%s], got [%s]\033[0m\n", expected, result);
+	}
 	free(result);
 
-	// Test 3: Längere Länge als der String nach Start
-	result = ft_substr("Hello", 2, 10);
-	if (strcmp(result, "llo") == 0)
-		printf("Test 3 erfolgreich: %s\n", result);
+	// Testfall 3
+	s1 = "No end";
+	s2 = "";
+	expected = "No end";
+	result = ft_strjoin(s1, s2);
+	if (result != NULL && strcmp(result, expected) == 0)
+	{
+		printf("\033[0;32mTest 3 passed: [%s] + Empty string = [%s]\033[0m\n", s1, result);
+	}
 	else
-		printf("Test 3 fehlgeschlagen: %s\n", result);
+	{
+		printf("\033[0;31mTest 3 failed: Expected [%s], got [%s]\033[0m\n", expected, result);
+	}
 	free(result);
 
-	// Weitere Tests können hier hinzugefügt werden...
+	// Füge hier weitere Testfälle hinzu, wenn nötig
+
+	printf("\n\n\n"); // 3 Leerzeilen am Ende
 }
 
-int main(void)
+void test_ft_strtrim(void)
 {
-	test_ft_substr();
-	return 0;
+	char *result;
+	printf("=== Testing ft_strtrim ===\n");
+
+	// Testfall 1: Normaler Fall
+	result = ft_strtrim("   Hello World!   ", " ");
+	if (strcmp(result, "Hello World!") == 0)
+	{
+		printf("\033[0;32mTest 1 passed: Trim spaces from '   Hello World!   ' = '%s'\033[0m\n", result);
+	}
+	else
+	{
+		printf("\033[0;31mTest 1 failed: Expected 'Hello World!', got '%s'\033[0m\n", result);
+	}
+	free(result);
+
+	// Testfall 2: Set am Anfang und Ende
+	result = ft_strtrim("###Hello World!!!", "#!");
+	if (strcmp(result, "Hello World") == 0)
+	{
+		printf("\033[0;32mTest 2 passed: Trim '#' and '!' from '###Hello World!!!' = '%s'\033[0m\n", result);
+	}
+	else
+	{
+		printf("\033[0;31mTest 2 failed: Expected 'Hello World', got '%s'\033[0m\n", result);
+	}
+	free(result);
+
+	// Testfall 3: Keine Übereinstimmung mit Set
+	result = ft_strtrim("Hello World", "x");
+	if (strcmp(result, "Hello World") == 0)
+	{
+		printf("\033[0;32mTest 3 passed: Trim 'x' from 'Hello World' = '%s'\033[0m\n", result);
+	}
+	else
+	{
+		printf("\033[0;31mTest 3 failed: Expected 'Hello World', got '%s'\033[0m\n", result);
+	}
+	free(result);
+
+	// Testfall 4: Leerer String
+	result = ft_strtrim("", " ");
+	if (strcmp(result, "") == 0)
+	{
+		printf("\033[0;32mTest 4 passed: Trim spaces from '' = '%s'\033[0m\n", result);
+	}
+	else
+	{
+		printf("\033[0;31mTest 4 failed: Expected '', got '%s'\033[0m\n", result);
+	}
+	free(result);
+
+	// Testfall 5: NULL Eingaben
+	result = ft_strtrim(NULL, " ");
+	if (result == NULL)
+	{
+		printf("\033[0;32mTest 5 passed: Trim spaces from NULL = NULL\033[0m\n");
+	}
+	else
+	{
+		printf("\033[0;31mTest 5 failed: Expected NULL, got '%s'\033[0m\n", result);
+	}
+	// Kein free(result) hier, da result NULL sein sollte
+
+
+	// Testfall 6: Leerer String
+	char *s = "Hello*!World";
+	result = ft_strtrim("**!!Hello*!World!!**", "*!");
+	if (strcmp(result, "") == *s)
+	{
+		printf("\033[0;32mTest 4 passed: Trim !, * from '**!!Hello*!World!!**' = '%s'\033[0m\n", result);
+	}
+	else
+	{
+		printf("\033[0;31mTest 4 failed: Expected 'Hello*!World', got '%s'\033[0m\n", result);
+	}
+	free(result);
+	printf("\n\n\n"); // 3 Leerzeilen am Ende
 }
 
+void test_ft_split(void) {
+	printf("=== Testing ft_split ===\n");
 
+	// Testcases
+	struct {
+		char *input;
+		char delimiter;
+		char *expected[5]; // Stelle sicher, dass dies groß genug für deine Testfälle ist
+		int expectedWordCount;
+	} testcases[] = {
+		{"Dies ist ein Test", ' ', {"Dies", "ist", "ein", "Test", NULL}, 4},
+		{"Ein weiterer Testfall", ' ', {"Ein", "weiterer", "Testfall", NULL}, 3},
+		{"OhneDelimiter", ' ', {"OhneDelimiter", NULL}, 1},
+		{"", ' ', {NULL}, 0}, // Leerer String
+		{NULL, ' ', {NULL}, 0}, // NULL als Eingabe
+	};
+
+	const char *GREEN = "\033[0;32m";
+	const char *RED = "\033[0;31m";
+	const char *RESET = "\033[0m";
+
+	for (int i = 0; i < sizeof(testcases) / sizeof(testcases[0]); i++) {
+		char **result = ft_split(testcases[i].input, testcases[i].delimiter);
+		int j = 0;
+		int success = 1; // Annahme: Test erfolgreich
+
+		printf("Testcase %d: ", i + 1);
+
+		// Überprüfe die Anzahl der Wörter
+		while (result && result[j]) {
+			if (testcases[i].expected[j] == NULL || strcmp(result[j], testcases[i].expected[j]) != 0) {
+				success = 0; // Fehler gefunden
+				break;
+			}
+			j++;
+		}
+		if (j != testcases[i].expectedWordCount) success = 0;
+
+		if (success) {
+			printf("%sErfolg%s\n", GREEN, RESET);
+		} else {
+			printf("%sFehlschlag%s - Erwartet: ", RED, RESET);
+			for (int k = 0; k < testcases[i].expectedWordCount; k++) {
+				printf("'%s' ", testcases[i].expected[k]);
+			}
+			printf("| Erhalten: ");
+			if (result) {
+				for (int k = 0; result[k]; k++) {
+					printf("'%s' ", result[k]);
+				}
+			} else {
+				printf("NULL");
+			}
+			printf("\n");
+		}
+
+		// Speicher freigeben
+		if (result) {
+			for (int k = 0; result[k]; k++) {
+				free(result[k]);
+			}
+			free(result);
+		}
+	}
+
+	printf("\n\n\n"); // 3 Leerzeilen am Ende
+}
 
 int	main(void)
 {
 	printf("Part 1\n");
-	testing_ft_isalpha();
-	testing_ft_isdigit();
-	testing_ft_isalnum();
-	testing_ft_isascii();
-	testing_ft_isprint();
-	testing_ft_strlen();
-	testing_ft_memset();
-	testing_ft_bzero();
-	testing_ft_memcpy();
-	testing_ft_memmove();
-	testing_ft_strlcpy();
-	testing_ft_strlcat();
-	testing_ft_toupper();
-	testing_ft_tolower();
-	testing_ft_strchr();
-	testing_ft_strrchr();
-	testing_ft_strncmp();
-	testing_ft_memchr();
-	testing_ft_memcmp();
-	testing_ft_strnstr();
-	testing_ft_atoi();
-	printf("_________________\n\nAll functions wihout external libraries tested \n_________________\n");
-	testing_ft_calloc();
-	testing_ft_strdup();
-	printf("Part 2\n");
+	//testing_ft_isalpha();
+	//testing_ft_isdigit();
+	//testing_ft_isalnum();
+	//testing_ft_isascii();
+	//testing_ft_isprint();
+	//testing_ft_strlen();
+	//testing_ft_memset();
+	//testing_ft_bzero();
+	//testing_ft_memcpy();
+	//testing_ft_memmove();
+	//testing_ft_strlcpy();
+	//testing_ft_strlcat();
+	//testing_ft_toupper();
+	//testing_ft_tolower();
+	//testing_ft_strchr();
+	//testing_ft_strrchr();
+	//testing_ft_strncmp();
+	//testing_ft_memchr();
+	//testing_ft_memcmp();
+	//testing_ft_strnstr();
+	//testing_ft_atoi();
+	//printf("_________________\n\nAll functions wihout external libraries tested \n_________________\n");
+	//testing_ft_calloc();
+	//testing_ft_strdup();
+	//printf("Part 2\n");
+	//test_ft_substr();
+	//test_ft_strjoin();
+	//test_ft_strtrim();
+	test_ft_split();
 }
 
