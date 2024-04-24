@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:53:04 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/24 18:15:25 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:30:09 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <stddef.h>
 #include <bsd/string.h>
 #include "libft.h"
+#include <limits.h>
 
 
 void testing_ft_isalpha(void) {
@@ -966,6 +967,38 @@ void test_ft_split(void) {
 	printf("\n\n\n"); // 3 Leerzeilen am Ende
 }
 
+void test_ft_itoa(void) {
+	printf("=== Testing ft_itoa ===\n");
+
+	struct {
+		int value;
+		char *expected;
+	} testCases[] = {
+		{0, "0"},
+		{123, "123"},
+		{-123, "-123"},
+		{INT_MAX, "2147483647"},
+		{INT_MIN, "-2147483648"},
+		// Weitere Testfälle können hier hinzugefügt werden
+	};
+
+	for (int i = 0; i < sizeof(testCases) / sizeof(testCases[0]); i++) {
+		char *result = ft_itoa(testCases[i].value);
+		if (result == NULL) {
+			printf("\033[31mFailure\033[0m at test case %d: malloc failed\n", i);
+			continue;
+		}
+		if (strcmp(result, testCases[i].expected) == 0) {
+			printf("\033[32mSuccess\033[0m: %d -> %s\n", testCases[i].value, result);
+		} else {
+			printf("\033[31mFailure\033[0m at test case %d: Expected %s, got %s\n", i, testCases[i].expected, result);
+		}
+		free(result); // Wichtig, um Speicherlecks zu vermeiden
+	}
+
+	printf("\n\n\n");
+}
+
 int	main(void)
 {
 	printf("Part 1\n");
@@ -997,6 +1030,7 @@ int	main(void)
 	//test_ft_substr();
 	//test_ft_strjoin();
 	//test_ft_strtrim();
-	test_ft_split();
+	//test_ft_split();
+	test_ft_itoa();
 }
 

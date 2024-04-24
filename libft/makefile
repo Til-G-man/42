@@ -35,6 +35,7 @@ functions/ft_substr.c \
 functions/ft_strjoin.c \
 functions/ft_strtrim.c \
 functions/ft_split.c \
+functions/ft_itoa.c \
 
 OBJ = $(SRC:.c=.o)
 
