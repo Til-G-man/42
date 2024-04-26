@@ -1,56 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 21:46:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 17:41:38 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/24 12:50:34 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/26 14:26:14 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	array_len(int n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	len;
-
-	if (n == 0)
-		return (1);
-	len = 0;
-	if (n < 0)
-		len++;
-	while (n != 0)
-	{
-		len++;
-		n = n / 10;
-	}
-	return (len);
-}
-
-char	*ft_itoa(int n)
-{
-	int		len;
 	char	*str;
+	int		strlen1;
+	int		strlen2;
 
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	len = array_len(n);
-	if (!str)
+	strlen1 = ft_strlen(s1);
+	strlen2 = ft_strlen(s2);
+	str = malloc(sizeof(char) * (strlen1 + strlen2 + 1));
+	if (str == NULL)
 		return (NULL);
-	str[len] = '\0';
-	if (n == 0)
-		str[0] = '0';
-	if (n < 0)
-	{
-		str[0] = '-';
-		str[--len] = '0' - (n % 10);
-		n /= -10;
-	}
-	while (n > 0)
-	{
-		str[--len] = '0' + (n % 10);
-		n /= 10;
-	}
+	ft_memmove(str, s1, strlen1);
+	ft_memmove(str + strlen1, s2, strlen2);
+	str[strlen1 + strlen2] = '\0';
 	return (str);
 }
