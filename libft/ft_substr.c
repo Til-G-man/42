@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 13:35:09 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/23 13:45:40 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/23 15:48:30 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/26 14:27:07 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n);
-
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	void	*ptr;
+	char	*str;
+	int		counter;
 
-	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, nmemb * size);
-	return (ptr);
+	str = malloc((int) len + 1);
+	if (str == NULL || s == NULL || ft_strlen(s) < start)
+		return (0);
+	counter = 0;
+	while (len > 0)
+	{
+		str[counter] = s[start];
+		len--;
+		start++;
+		counter++;
+	}
+	str[counter] = '\0';
+	return (str);
 }

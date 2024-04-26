@@ -6,15 +6,13 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:22:55 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/24 16:26:25 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:27:02 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-
-int	is_in_set(char c, char const *set)
+static int	is_in_set(char c, char const *set)
 {
 	int	i;
 
@@ -38,7 +36,7 @@ int	get_start(char const *s1, char const *set)
 	return (start);
 }
 
-int	get_end(char const *s1, char const *set)
+static int	get_end(char const *s1, char const *set)
 {
 	int	end;
 	int	counter;

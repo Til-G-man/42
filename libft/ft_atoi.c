@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:29:37 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/24 13:24:15 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:04:38 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	space(char s)
+static int	space(char s)
 {
 	if (s == ' ' || s == ' ' || (9 <= s && s <= 13))
 		return (1);

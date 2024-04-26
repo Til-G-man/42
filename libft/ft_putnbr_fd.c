@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 16:21:33 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/16 16:50:02 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/26 13:57:15 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/26 15:17:10 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char c);
-int	ft_isdigit(char c);
+#include "libft.h"
 
-int	ft_isalnum(char c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
-		return (8);
-	else
-		return (0);
+	char	*str;
+
+	str = ft_itoa(n);
+	write(fd, str, ft_strlen(str));
 }

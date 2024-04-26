@@ -6,22 +6,23 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:53:04 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/24 22:30:09 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:10:11 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // to run test execute:
 // gcc testcode.c -L. -lft -lbsd -o testprogram
 // ./testprogram
-
+/*
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include <stdlib.h>
-#include <stddef.h>
 #include <bsd/string.h>
 #include "libft.h"
 #include <limits.h>
+#include <unistd.h>
+#include <fcntl.h>
+
 
 
 void testing_ft_isalpha(void) {
@@ -999,38 +1000,322 @@ void test_ft_itoa(void) {
 	printf("\n\n\n");
 }
 
+char mock_function(unsigned int i, char c) {
+	return c - 32; // Beispiel: Konvertiert Kleinbuchstaben zu Großbuchstaben
+}
+
+void test_ft_strmapi(void)
+{
+	char const *test_str = "teststring";
+	char *result;
+	char expected[] = "TESTSTRING";
+
+	printf("=== Testing ft_strmapi ===\n");
+
+	result = ft_strmapi(test_str, mock_function);
+	if (strcmp(result, expected) == 0) {
+		printf("\033[0;32mSUCCESS: Expected '%s', got '%s'\033[0m\n", expected, result);
+	} else {
+		printf("\033[0;31mFAILURE: Expected '%s', got '%s'\033[0m\n", expected, result);
+	}
+
+	free(result);
+
+	printf("\n\n\n");
+}
+
+
+void test_ft_striteri_case(char *test_str, void (*f)(unsigned int, char*), char *expected_result) {
+	char *str_copy = strdup(test_str); // Dupliziere den Teststring, um Änderungen vorzunehmen
+	ft_striteri(str_copy, f); // Wende ft_striteri auf die Kopie an
+
+	if (strcmp(str_copy, expected_result) == 0) {
+		printf("\033[0;32mSUCCESS\033[0m: [%s] -> [%s]\n", test_str, str_copy);
+	} else {
+		printf("\033[0;31mFAILURE\033[0m: [%s] -> [%s], expected [%s]\n", test_str, str_copy, expected_result);
+	}
+
+	free(str_copy); // Gib den duplizierten String frei
+}
+
+void to_uppercase(unsigned int i, char *c) {
+	if (*c >= 'a' && *c <= 'z') {
+		*c -= 32; // Konvertiere Kleinbuchstaben in Großbuchstaben
+	}
+}
+
+void test_ft_striteri() {
+	printf("=== Testing ft_striteri ===\n");
+
+	// Testfall 1: Konvertiere alle Buchstaben in Großbuchstaben
+	test_ft_striteri_case("test", to_uppercase, "TEST");
+
+	// Füge hier weitere Testfälle hinzu...
+
+	printf("\n\n\n"); // 3 Leerzeilen am Ende
+}
+
+void test_ft_putchar_fd(void)
+{
+	int fd;
+	ssize_t bytes_read;
+    char buffer[1024]; // Annahme: Die Datei ist kleiner als 1024 Bytes
+	char	testchar = 'a';
+
+    // Datei zum Schreiben öffnen
+    fd = open("testdatei.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1) {
+        perror("Fehler beim Öffnen der Datei (write)");
+    }
+
+    // Ein Zeichen in die Datei schreiben
+    ft_putchar_fd(testchar, fd);
+
+    if (close(fd) == -1)
+		perror("Fehler beim Schließen der Datei (write)");
+
+	fd = open("testdatei.txt", O_RDONLY);
+    if (fd == -1) {
+        perror("Fehler beim Öffnen der Datei");
+    }
+
+    // Inhalt der Datei lesen
+    bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+    if (bytes_read == -1) {
+        perror("Fehler beim Lesen der Datei");
+        close(fd);
+    }
+
+    // Sicherstellen, dass die Ausgabe als String behandelt wird
+    buffer[bytes_read] = '\0';
+
+    if (testchar == buffer[0])
+		printf("\033[0;32mSUCCESS\033[0m\n");
+	else
+		printf("\033[0;31mFAILURE'\033[0m\n");
+    printf("Dateiinhalt: '%s' Wrote: '%c'\n", buffer, testchar);
+
+    if (close(fd) == -1)
+        perror("Fehler beim Schließen der Datei");
+	printf("\n\n\n");
+}
+
+void test_ft_putstr_fd(void)
+{
+	int		fd;
+	ssize_t	bytes_read;
+	char	*teststr = "Hallo Welt!";
+    char	buffer[ft_strlen(teststr) + 1];
+	int 	counter = 0;
+	int		fail = 0;
+
+    // Datei zum Schreiben öffnen
+    fd = open("testdatei.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1) {
+        perror("Fehler beim Öffnen der Datei (write)");
+    }
+
+    // Ein Zeichen in die Datei schreiben
+    ft_putstr_fd(teststr, fd);
+
+    if (close(fd) == -1)
+		perror("Fehler beim Schließen der Datei (write)");
+
+	fd = open("testdatei.txt", O_RDONLY);
+    if (fd == -1) {
+        perror("Fehler beim Öffnen der Datei");
+    }
+
+    // Inhalt der Datei lesen
+    bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+    if (bytes_read == -1) {
+        perror("Fehler beim Lesen der Datei");
+        close(fd);
+    }
+
+    // Sicherstellen, dass die Ausgabe als String behandelt wird
+    buffer[bytes_read] = '\0';
+	while (teststr[counter])
+	{
+		if (teststr[counter]!= buffer[counter])
+            fail = 1;
+		counter++;
+	}
+    if (fail == 0)
+		printf("\033[0;32mSUCCESS\033[0m\n");
+	else
+		printf("\033[0;31mFAILURE'\033[0m\n");
+    printf("Dateiinhalt: '%s' Wrote: '%s'\n", buffer, teststr);
+
+    if (close(fd) == -1)
+        perror("Fehler beim Schließen der Datei");
+	printf("\n\n\n");
+}
+
+void test_ft_putendl_fd(void)
+{
+    int		fd;
+    ssize_t	bytes_read;
+    char	*teststr = "Hallo Welt!";
+    char	buffer[ft_strlen(teststr) + 2]; // +2 für den Zeilenumbruch und den Nullterminator
+    int 	counter = 0;
+    int		fail = 0;
+
+    // Datei zum Schreiben öffnen
+    fd = open("testdatei.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1) {
+        perror("Fehler beim Öffnen der Datei (write)");
+    }
+
+    // Die Zeichenkette mit einem Zeilenumbruch in die Datei schreiben
+    ft_putendl_fd(teststr, fd);
+
+    if (close(fd) == -1)
+        perror("Fehler beim Schließen der Datei (write)");
+
+    // Datei zum Lesen öffnen
+    fd = open("testdatei.txt", O_RDONLY);
+    if (fd == -1) {
+        perror("Fehler beim Öffnen der Datei");
+    }
+
+    // Inhalt der Datei lesen
+    bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+    if (bytes_read == -1) {
+        perror("Fehler beim Lesen der Datei");
+        close(fd);
+    }
+
+    // Sicherstellen, dass die Ausgabe als String behandelt wird
+    buffer[bytes_read] = '\0';
+
+    // Überprüfen, ob der gelesene Inhalt dem erwarteten Inhalt entspricht
+    while (teststr[counter])
+    {
+        if (teststr[counter] != buffer[counter])
+            fail = 1;
+        counter++;
+    }
+
+    // Überprüfen, ob der Zeilenumbruch korrekt geschrieben wurde
+    if (buffer[counter] != '\n')
+        fail = 1;
+
+    if (fail == 0)
+        printf("\033[0;32mSUCCESS\033[0m\n");
+    else
+        printf("\033[0;31mFAILURE'\033[0m\n");
+    printf("file: '%s' result: '%s'\n", buffer, teststr);
+
+    if (close(fd) == -1)
+        perror("Fehler beim Schließen der Datei");
+    printf("\n\n\n");
+}
+
+
+
+void test_ft_putnbr_fd(void)
+{
+	int test_cases[] = {0, 1, -1, INT_MAX, INT_MIN};
+	char *expected_results[] = {"0", "1", "-1", "2147483647", "-2147483648"};
+	int fd;
+	char buffer[1024]; // Stellen Sie sicher, dass dies groß genug ist, um die größten Zahlen zu speichern
+	ssize_t bytes_read;
+
+	printf("=== Testing ft_putnbr_fd ===\n");
+
+	for (int i = 0; i < sizeof(test_cases) / sizeof(test_cases[0]); i++)
+	{
+		// Temporäre Datei erstellen, um die Ausgabe von ft_putnbr_fd zu speichern
+		fd = open("temp_testfile.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (fd == -1)
+		{
+			perror("Fehler beim Öffnen der Datei");
+			continue;
+		}
+
+		// Test durchführen
+		ft_putnbr_fd(test_cases[i], fd);
+
+		// Datei schließen
+		close(fd);
+
+		// Datei öffnen, um den Inhalt zu lesen
+		fd = open("temp_testfile.txt", O_RDONLY);
+		if (fd == -1)
+		{
+			perror("Fehler beim Öffnen der Datei");
+			continue;
+		}
+
+		// Inhalt lesen
+		bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+		if (bytes_read == -1)
+		{
+			perror("Fehler beim Lesen der Datei");
+			close(fd);
+			continue;
+		}
+		buffer[bytes_read] = '\0'; // Null-Terminator hinzufügen
+
+		// Testergebnis überprüfen
+		if (strcmp(buffer, expected_results[i]) == 0)
+		{
+			printf("\033[0;32mTest %d passed: %d -> %s\033[0m\n", i + 1, test_cases[i], buffer);
+		}
+		else
+		{
+			printf("\033[0;31mTest %d failed: Expected %s, got %s\033[0m\n", i + 1, expected_results[i], buffer);
+		}
+
+		// Datei schließen
+		close(fd);
+	}
+
+	// Temporäre Datei entfernen
+	remove("temp_testfile.txt");
+
+	printf("\n\n\n"); // 3 Leerzeilen am Ende
+}
+
 int	main(void)
 {
 	printf("Part 1\n");
-	//testing_ft_isalpha();
-	//testing_ft_isdigit();
-	//testing_ft_isalnum();
-	//testing_ft_isascii();
-	//testing_ft_isprint();
-	//testing_ft_strlen();
-	//testing_ft_memset();
-	//testing_ft_bzero();
-	//testing_ft_memcpy();
-	//testing_ft_memmove();
-	//testing_ft_strlcpy();
-	//testing_ft_strlcat();
-	//testing_ft_toupper();
-	//testing_ft_tolower();
-	//testing_ft_strchr();
-	//testing_ft_strrchr();
-	//testing_ft_strncmp();
-	//testing_ft_memchr();
-	//testing_ft_memcmp();
-	//testing_ft_strnstr();
-	//testing_ft_atoi();
-	//printf("_________________\n\nAll functions wihout external libraries tested \n_________________\n");
-	//testing_ft_calloc();
-	//testing_ft_strdup();
-	//printf("Part 2\n");
-	//test_ft_substr();
-	//test_ft_strjoin();
-	//test_ft_strtrim();
-	//test_ft_split();
+	testing_ft_isalpha();
+	testing_ft_isdigit();
+	testing_ft_isalnum();
+	testing_ft_isascii();
+	testing_ft_isprint();
+	testing_ft_strlen();
+	testing_ft_memset();
+	testing_ft_bzero();
+	testing_ft_memcpy();
+	testing_ft_memmove();
+	testing_ft_strlcpy();
+	testing_ft_strlcat();
+	testing_ft_toupper();
+	testing_ft_tolower();
+	testing_ft_strchr();
+	testing_ft_strrchr();
+	testing_ft_strncmp();
+	testing_ft_memchr();
+	testing_ft_memcmp();
+	testing_ft_strnstr();
+	testing_ft_atoi();
+	printf("_________________\n\nAll functions wihout external libraries tested \n_________________\n");
+	testing_ft_calloc();
+	testing_ft_strdup();
+	printf("Part 2\n");
+	test_ft_substr();
+	test_ft_strjoin();
+	test_ft_strtrim();
+	test_ft_split();
 	test_ft_itoa();
+	test_ft_strmapi();
+	test_ft_striteri();
+	test_ft_putchar_fd();
+	test_ft_putstr_fd();
+	test_ft_putendl_fd();
+	test_ft_putnbr_fd();
 }
-
+*/

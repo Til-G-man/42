@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 11:55:35 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/24 20:29:06 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/24 12:50:34 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/26 14:26:14 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *str);
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	char	*str;
+	int		strlen1;
+	int		strlen2;
 
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	i = 0;
-	while (src[i] != '\0' && i < dstsize - 1)
-	{
-		printf("%c", src[i]);
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	strlen1 = ft_strlen(s1);
+	strlen2 = ft_strlen(s2);
+	str = malloc(sizeof(char) * (strlen1 + strlen2 + 1));
+	if (str == NULL)
+		return (NULL);
+	ft_memmove(str, s1, strlen1);
+	ft_memmove(str + strlen1, s2, strlen2);
+	str[strlen1 + strlen2] = '\0';
+	return (str);
 }

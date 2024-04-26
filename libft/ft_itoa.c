@@ -6,48 +6,51 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 21:46:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/24 22:33:18 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:15:21 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int	array_len(int n)
+static int	array_len(int n)
 {
-	int    len;
+	int	len;
 
-    len = 0;
-    while (n!= 0)
-    {
-        n = n / 10;
-        len++;
-    }
-    return (len);
-}
-
-char	*get_array(int n, char **array)
-{
-	int		array_iterator;
-	char	int_to_char;
-
-	array_iterator = 0;
-	while(n!= 0)
+	if (n == 0)
+		return (1);
+	len = 0;
+	if (n < 0)
+		len++;
+	while (n != 0)
 	{
-		int_to_char = n % 10 + '0';
-		array[array_iterator] = &int_to_char;
+		len++;
 		n = n / 10;
-		array_iterator--;
 	}
-	array[array_iterator] = 0;
-	return (*array);
+	return (len);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char	**return_array;
+	int		len;
+	char	*str;
 
-	return_array = (char **)malloc(sizeof(char *) * (array_len(n) + 1));
-	if (return_array == NULL)
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	len = array_len(n);
+	if (!str)
 		return (NULL);
-	return (get_array(n, return_array));
+	str[len] = '\0';
+	if (n == 0)
+		str[0] = '0';
+	if (n < 0)
+	{
+		str[0] = '-';
+		str[--len] = '0' - (n % 10);
+		n /= -10;
+	}
+	while (n > 0)
+	{
+		str[--len] = '0' + (n % 10);
+		n /= 10;
+	}
+	return (str);
 }

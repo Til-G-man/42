@@ -6,13 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:22:40 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/24 20:40:58 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:26:03 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+#include "libft.h"
 
 int	count_words(char const *s, char c)
 {

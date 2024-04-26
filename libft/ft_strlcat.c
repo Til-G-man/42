@@ -6,13 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 11:55:12 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/22 12:07:05 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:26:16 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
-size_t	ft_strlen(const char *str);
+#include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {

@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 13:15:35 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/22 13:51:19 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/26 10:32:37 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/26 14:26:24 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *s);
-
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		counter;
-	char	*return_val;
+	int		index;
+	char	*new_str;
 
-	return_val = NULL;
-	counter = 0;
-	if (c == '\0')
-		return ((char *)s + ft_strlen(s));
-	while (s[counter])
+	index = 0;
+	new_str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!new_str)
+		return (NULL);
+	while (s[index])
 	{
-		if (s[counter] == c)
-		{
-			return_val = (char *)s + counter;
-		}
-		counter++;
+		new_str[index] = f(index, s[index]);
+		index++;
 	}
-	if (return_val != NULL)
-		return (return_val);
-	return (NULL);
+	return (new_str);
 }
