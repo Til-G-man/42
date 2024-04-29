@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:09:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 18:01:03 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/29 23:07:44 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_printf(const char *format, ...)
 	char	**str;
 	int		str_iterator;
 
+	str_iterator = 0;
 	str = ft_split(format, '%');
 	while (str[str_iterator])
 	{
