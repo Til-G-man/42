@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:09:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/30 13:41:16 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:55:11 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-ft_printf("first decimal (d): %d\nstring (s): %s\n%% (%%): %%", 42, "hallo");
+ft_printf("first decimal (d): %d\nstring (s): %s\n%% (%%): %%\n", 42, "hallo");
+printf("pfrintf pointer: %p", &"HAllo");
 //ft_printf("string (s): %s\n", "hello");
 //ft_printf("pointer (p): %p\n", (void*)&main);
 //ft_printf("int (i): %i\n", 42);
