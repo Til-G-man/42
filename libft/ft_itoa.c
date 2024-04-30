@@ -34,8 +34,8 @@ char	*ft_itoa(int n)
 	int		len;
 	char	*str;
 
-	str = (char *)malloc(sizeof(char) * (len + 1));
 	len = array_len(n);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	str[len] = '\0';

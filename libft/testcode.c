@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   testcode.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:53:04 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/29 23:01:56 by tilman           ###   ########.fr       */
+/*   Updated: 2024/04/30 08:40:28 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // to run test execute:
 // gcc testcode.c -L. -lft -lbsd -o testprogram
 // ./testprogram
-/*
+
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -1212,8 +1212,6 @@ void test_ft_putendl_fd(void)
     printf("\n\n\n");
 }
 
-
-
 void test_ft_putnbr_fd(void)
 {
 	int test_cases[] = {0, 1, -1, INT_MAX, INT_MIN};
@@ -1280,42 +1278,42 @@ void test_ft_putnbr_fd(void)
 
 int	main(void)
 {
-	printf("Part 1\n");
-	testing_ft_isalpha();
-	testing_ft_isdigit();
-	testing_ft_isalnum();
-	testing_ft_isascii();
-	testing_ft_isprint();
-	testing_ft_strlen();
-	testing_ft_memset();
-	testing_ft_bzero();
-	testing_ft_memcpy();
-	testing_ft_memmove();
-	testing_ft_strlcpy();
-	testing_ft_strlcat();
-	testing_ft_toupper();
-	testing_ft_tolower();
-	testing_ft_strchr();
-	testing_ft_strrchr();
-	testing_ft_strncmp();
-	testing_ft_memchr();
-	testing_ft_memcmp();
-	testing_ft_strnstr();
-	testing_ft_atoi();
-	printf("_________________\n\nAll functions wihout external libraries tested \n_________________\n");
-	testing_ft_calloc();
-	testing_ft_strdup();
-	printf("Part 2\n");
-	test_ft_substr();
-	test_ft_strjoin();
-	test_ft_strtrim();
-	test_ft_split();
-	test_ft_itoa();
-	test_ft_strmapi();
-	test_ft_striteri();
-	test_ft_putchar_fd();
-	test_ft_putstr_fd();
-	test_ft_putendl_fd();
+	//printf("Part 1\n");
+	//testing_ft_isalpha();
+	//testing_ft_isdigit();
+	//testing_ft_isalnum();
+	//testing_ft_isascii();
+	//testing_ft_isprint();
+	//testing_ft_strlen();
+	//testing_ft_memset();
+	//testing_ft_bzero();
+	//testing_ft_memcpy();
+	//testing_ft_memmove();
+	//testing_ft_strlcpy();
+	//testing_ft_strlcat();
+	//testing_ft_toupper();
+	//testing_ft_tolower();
+	//testing_ft_strchr();
+	//testing_ft_strrchr();
+	//testing_ft_strncmp();
+	//testing_ft_memchr();
+	//testing_ft_memcmp();
+	//testing_ft_strnstr();
+	//testing_ft_atoi();
+	//printf("_________________\n\nAll functions wihout external libraries tested \n_________________\n");
+	//testing_ft_calloc();
+	//testing_ft_strdup();
+	//printf("Part 2\n");
+	//test_ft_substr();
+	//test_ft_strjoin();
+	//test_ft_strtrim();
+	//test_ft_split();
+	//test_ft_itoa();
+	//test_ft_strmapi();
+	//test_ft_striteri();
+	//test_ft_putchar_fd();
+	//test_ft_putstr_fd();
+	//test_ft_putendl_fd();
 	test_ft_putnbr_fd();
 }
-*/
+

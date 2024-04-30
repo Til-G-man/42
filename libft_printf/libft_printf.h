@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   libft_printf.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 19:12:20 by tilman            #+#    #+#             */
-/*   Updated: 2024/04/29 19:20:04 by tilman           ###   ########.fr       */
+/*   Created: 2024/04/30 08:01:06 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/30 12:14:53 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef LIBFT_H
+# define LIBFT_H
 
-int	ft_strlen(char *str)
-{
-	int counter;
+#include "libft/libft.h"
 
-	counter = 0;
-	while (str[counter])
-		counter++;
-	return (counter);
-}
-void	ft_putstr(char *str)
-{
-	write (1, str, ft_strlen(str));
-}
 
+#endif

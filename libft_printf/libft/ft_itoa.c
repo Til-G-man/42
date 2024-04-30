@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 21:46:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 15:15:21 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/04/30 07:59:13 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*ft_itoa(int n)
 	int		len;
 	char	*str;
 
-	str = (char *)malloc(sizeof(char) * (len + 1));
 	len = array_len(n);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	str[len] = '\0';

@@ -8,7 +8,7 @@ ARFLAGS = rcs
 NAME = libftprintf.a
 
 
-SRC = testfile.c
+SRC = libft/*.c
 
 OBJ = $(SRC:.c=.o)
 
