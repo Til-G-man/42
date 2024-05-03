@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:57:15 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/03 14:00:00 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:01:02 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_printf.h"
 
 void	ft_putnbr_fd(int nbr, int fd)
 {

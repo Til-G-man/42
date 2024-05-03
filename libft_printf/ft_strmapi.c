@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:32:37 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:26:24 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:00:15 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_printf.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

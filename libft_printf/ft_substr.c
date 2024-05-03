@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:48:30 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:27:07 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:59:51 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_printf.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

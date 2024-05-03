@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 21:46:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/30 07:59:13 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:02:58 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_printf.h"
 
 static int	array_len(int n)
 {

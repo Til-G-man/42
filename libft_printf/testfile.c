@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:09:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/03 14:49:16 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:31:04 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,37 +43,6 @@
 //%: Prozentzeichen
 //	Kürzel: %%
 //	Beispiel: ft_printf("%%"); // Ausgabe: %
-
-
-//int ft_printf(const char *format, ...) {
-//    va_list args;
-//    va_start(args, format);
-
-//    while (*format) { // Durchlaufe den Formatierungsstring
-//        if (*format == '%') { // Wenn ein Formatzeichen gefunden wird
-//            format++; // Gehe zum Typspezifikator
-//            switch (*format) {
-//                case 'd': { // Integer
-//                    int i = va_arg(args, int);
-//                    printf("%d", i);
-//                    break;
-//                }
-//                case 's': { // String
-//                    char *s = va_arg(args, char*);
-//                    printf("%s", s);
-//                    break;
-//                }
-//                // Fügen Sie hier weitere Fälle für andere Typen hinzu
-//            }
-//        } else {
-//            putchar(*format); // Drucke das Zeichen, wenn es kein Formatzeichen ist
-//        }
-//        format++; // Gehe zum nächsten Zeichen
-//    }
-
-//    va_end(args);
-//    return 0;
-//}
 
 
 //void	ft_putptr(unsigned long num)

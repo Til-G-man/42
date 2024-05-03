@@ -6,12 +6,12 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 08:01:06 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/03 14:49:15 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:31:05 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef LIBFT_PRINTF_H
+# define LIBFT_PRINTF_H
 
 #include <stdint.h>
 # include <stddef.h>

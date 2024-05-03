@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:22:41 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 12:27:54 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:03:21 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_printf.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

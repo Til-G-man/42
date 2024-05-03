@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:22:40 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:26:03 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:03:19 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_printf.h"
 
 int	count_words(char const *s, char c)
 {

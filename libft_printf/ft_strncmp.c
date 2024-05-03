@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:27:54 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:26:27 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:00:13 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_printf.h"
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {

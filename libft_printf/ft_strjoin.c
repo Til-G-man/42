@@ -6,11 +6,11 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:50:34 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:26:14 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:03:34 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_printf.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
