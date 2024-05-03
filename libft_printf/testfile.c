@@ -6,13 +6,14 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:09:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/30 15:55:11 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:49:16 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h>
-#include "libft/libft.h"
+#include "libft_printf.h"
+
 
 //possible d-types: cspdiuxX%
 //c: Character
@@ -43,9 +44,6 @@
 //	Kürzel: %%
 //	Beispiel: ft_printf("%%"); // Ausgabe: %
 
-
-#include <stdarg.h>
-#include <stdio.h>
 
 //int ft_printf(const char *format, ...) {
 //    va_list args;
@@ -78,6 +76,22 @@
 //}
 
 
+//void	ft_putptr(unsigned long num)
+//{
+//	char *hex_digits = "0123456789abcdef";
+//	char buffer[20];
+//	int i = 0;
+
+//	while (num)
+//	{
+//		buffer[i++] = hex_digits[num % 16];
+//		num = num / 16;
+//	}
+//	write(1, "0x", 2);
+//	while (--i >= 0)
+//		write(1, &buffer[i], 1);
+//}
+
 
 int	ft_printf(const char *format, ...)
 {
@@ -96,13 +110,13 @@ int	ft_printf(const char *format, ...)
 			else if (*format == 's')
 				ft_putstr_fd(va_arg(args, char *), output);
 			else if (*format == 'p')
-				printf("%% sign %p is of type pointer (p)\n", va_arg(args, void *));
+				ft_putptr((unsigned long) va_arg(args, void *));
 			else if (*format == 'd')
 				ft_putnbr_fd(va_arg(args, int), output);
 			else if (*format == 'i')
-				printf("%% sign %d is of type int (i)\n", va_arg(args, int));
+				ft_putnbr_fd(va_arg(args, int), output);
 			else if (*format == 'u')
-				printf("%% sign %u is of type unsigned int (u)\n", va_arg(args, unsigned int));
+				ft_putnbr_fd((unsigned) va_arg(args, int), output);
 			else if (*format == 'x')
 				printf("%% sign %x is of type unsigned int (x)\n", va_arg(args, unsigned int));
 			else if (*format == 'X')
@@ -120,7 +134,8 @@ int	ft_printf(const char *format, ...)
 int	main(void)
 {
 ft_printf("first decimal (d): %d\nstring (s): %s\n%% (%%): %%\n", 42, "hallo");
-printf("pfrintf pointer: %p", &"HAllo");
+printf("printf pointer: %p\n", &"HAllo");
+ft_printf("ft_printf pointer: %p\nand ft_ptint f string: %s \n", &"HAllo", "Hallo Welt");
 //ft_printf("string (s): %s\n", "hello");
 //ft_printf("pointer (p): %p\n", (void*)&main);
 //ft_printf("int (i): %i\n", 42);
