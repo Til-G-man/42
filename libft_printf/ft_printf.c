@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   testfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:09:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/03 17:31:04 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:17:26 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
 #include "libft_printf.h"
-
-
 //possible d-types: cspdiuxX%
 //c: Character
 //	Kürzel: c
@@ -45,23 +41,6 @@
 //	Beispiel: ft_printf("%%"); // Ausgabe: %
 
 
-//void	ft_putptr(unsigned long num)
-//{
-//	char *hex_digits = "0123456789abcdef";
-//	char buffer[20];
-//	int i = 0;
-
-//	while (num)
-//	{
-//		buffer[i++] = hex_digits[num % 16];
-//		num = num / 16;
-//	}
-//	write(1, "0x", 2);
-//	while (--i >= 0)
-//		write(1, &buffer[i], 1);
-//}
-
-
 int	ft_printf(const char *format, ...)
 {
 	va_list		args;
@@ -87,9 +66,11 @@ int	ft_printf(const char *format, ...)
 			else if (*format == 'u')
 				ft_putnbr_fd((unsigned) va_arg(args, int), output);
 			else if (*format == 'x')
-				printf("%% sign %x is of type unsigned int (x)\n", va_arg(args, unsigned int));
+			{
+				ft_intohex(va_arg(args, unsigned int), 0);
+			}
 			else if (*format == 'X')
-				printf("%% sign %X is of type unsigned int (X)\n", va_arg(args, unsigned int));
+				ft_intohex(va_arg(args, unsigned int), 1);
 			else if (*format == '%')
 				write(output, "%%", 1);
 		}
@@ -98,18 +79,4 @@ int	ft_printf(const char *format, ...)
 		format++;
 	}
 	return (0);
-}
-
-int	main(void)
-{
-ft_printf("first decimal (d): %d\nstring (s): %s\n%% (%%): %%\n", 42, "hallo");
-printf("printf pointer: %p\n", &"HAllo");
-ft_printf("ft_printf pointer: %p\nand ft_ptint f string: %s \n", &"HAllo", "Hallo Welt");
-//ft_printf("string (s): %s\n", "hello");
-//ft_printf("pointer (p): %p\n", (void*)&main);
-//ft_printf("int (i): %i\n", 42);
-//ft_printf("unsigned int (u): %u\n", 42);
-//ft_printf("hex lowercase (x): %x\n", 42);
-//ft_printf("hex uppercase (X): %X\n", 42);
-//ft_printf("percent sign (%%): %%\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_printf.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 08:01:06 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/03 17:31:05 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:27:51 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <stdarg.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -53,5 +54,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putptr(unsigned long num);
+void	ft_intohex(unsigned int nbr, int capital);
+int	ft_printf(const char *format, ...);
 
 #endif
