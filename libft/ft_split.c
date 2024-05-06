@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:22:40 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:26:03 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:57:24 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,14 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
+	if (*s == '\0')
+	{
+		array = (char **)malloc(sizeof(char *) * 1);
+		if (!array)
+			return (NULL);
+		array[0] = NULL;
+		return (array);
+	}
 	array = (char **)malloc(sizeof(char *) * (count_words(s, c)) + 1);
 	if (!array)
 		return (NULL);

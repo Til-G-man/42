@@ -6,22 +6,18 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:48:30 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:27:07 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:23:21 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*fck25lines(char *str, const char *s, int start, size_t len)
 {
-	char	*str;
-	int		counter;
+	int	counter;
 
-	str = malloc((int) len + 1);
-	if (str == NULL || s == NULL || ft_strlen(s) < start)
-		return (0);
 	counter = 0;
-	while (len > 0)
+	while (len > 0 && s[start] != '\0')
 	{
 		str[counter] = s[start];
 		len--;
@@ -29,5 +25,26 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		counter++;
 	}
 	str[counter] = '\0';
+	return (str);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+
+	if (start >= ft_strlen(s))
+	{
+		str = malloc(1);
+		if (str == NULL)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
+	}
+	if ((signed int)(ft_strlen(s) - start) < (int) len)
+		len = ft_strlen(s) - start;
+	str = malloc(len + 1);
+	if (str == NULL)
+		return (NULL);
+	str = fck25lines (str, s, start, len);
 	return (str);
 }

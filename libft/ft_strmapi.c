@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:32:37 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:26:24 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:51:11 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		new_str[index] = f(index, s[index]);
 		index++;
 	}
+	new_str[index] = '\0';
 	return (new_str);
 }

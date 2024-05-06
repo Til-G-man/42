@@ -6,14 +6,14 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:53:04 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/30 08:40:28 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:13:54 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // to run test execute:
 // gcc testcode.c -L. -lft -lbsd -o testprogram
 // ./testprogram
-
+/*
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -1316,4 +1316,4 @@ int	main(void)
 	test_ft_putendl_fd();
 	test_ft_putnbr_fd();
 }
-
+*/

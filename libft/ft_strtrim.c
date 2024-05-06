@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:22:55 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 14:27:02 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:35:11 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,24 @@ static int	get_end(char const *s1, char const *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;
+	int		start;
+	int		end;
 
 	if (!s1 ||!set)
 		return (0);
-	str = malloc(sizeof(char) * (get_end(s1, set) - get_start(s1, set) + 1));
+	start = get_start(s1, set);
+	end = get_end(s1, set);
+	if (start == (int) ft_strlen(s1))
+	{
+		str = malloc(1);
+		if (!str)
+			return (0);
+		str[0] = '\0';
+		return (str);
+	}
+	str = malloc(sizeof(char) * (end - start + 1));
 	if (!str)
 		return (0);
-	ft_strlcpy(str, s1 + get_start(s1, set),
-		get_end(s1, set) - get_start(s1, set) + 1);
+	ft_strlcpy(str, s1 + start, end - start + 1);
 	return (str);
 }

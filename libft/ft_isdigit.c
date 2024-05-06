@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:22:42 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/16 16:12:09 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:53:59 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(char nb)
+int	ft_isdigit(int nb)
 {
 	if ('0' <= nb && nb <= '9')
 		return (2048);
