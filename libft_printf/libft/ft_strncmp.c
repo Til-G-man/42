@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 12:25:20 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 11:25:42 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/02/19 11:27:54 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/05/06 17:40:21 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int		counter;
-	char	ch;
+	unsigned int	i;
 
-	ch = (char)c;
-	counter = 0;
-	if (ch == '\0')
-		return ((char *)s + ft_strlen(s));
-	while (s[counter])
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (i < n)
 	{
-		if (s[counter] == ch)
+		if (s1[i] != s2[i] || s1[i] == '\0' || s2[i] == '\0')
 		{
-			return ((char *) s + counter);
+			return ((unsigned char) s1[i] - (unsigned char) s2[i]);
 		}
-		counter++;
+		i++;
 	}
-	return (NULL);
+	return (0);
 }

@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 12:25:20 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 11:25:42 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/26 12:41:07 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/26 15:16:52 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int		counter;
-	char	ch;
-
-	ch = (char)c;
-	counter = 0;
-	if (ch == '\0')
-		return ((char *)s + ft_strlen(s));
-	while (s[counter])
-	{
-		if (s[counter] == ch)
-		{
-			return ((char *) s + counter);
-		}
-		counter++;
-	}
-	return (NULL);
+	if (!s)
+		return ;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

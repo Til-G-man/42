@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_intohex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:35:32 by tilman            #+#    #+#             */
-/*   Updated: 2024/05/04 15:10:43 by tilman           ###   ########.fr       */
+/*   Updated: 2024/05/07 18:03:00 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_printf.h"
+#include "ft_printf.h"
 
-void	ft_intohex(unsigned int nbr, int capital)
+int	ft_intohex(unsigned int nbr, int capital, int counter)
 {
 	char	*hex_digits;
 
@@ -22,11 +22,13 @@ void	ft_intohex(unsigned int nbr, int capital)
 		hex_digits = "0123456789ABCDEF";
 	if (nbr >= 16)
 	{
-		ft_intohex(nbr / 16, capital);
-		ft_intohex(nbr % 16, capital);
+		ft_intohex(nbr / 16, capital, counter);
+		ft_intohex(nbr % 16, capital, counter);
 	}
 	else
 	{
 		write(1, &hex_digits[nbr], 1);
+		counter++;
 	}
+	return (counter);
 }

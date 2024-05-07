@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 12:25:20 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 11:25:42 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/22 14:22:29 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/26 14:25:42 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		counter;
-	char	ch;
+	size_t				counter;
+	const unsigned char	*str;
 
-	ch = (char)c;
+	str = (const unsigned char *)s;
 	counter = 0;
-	if (ch == '\0')
-		return ((char *)s + ft_strlen(s));
-	while (s[counter])
+	while (counter < n)
 	{
-		if (s[counter] == ch)
-		{
-			return ((char *) s + counter);
-		}
+		if (*(str + counter) == (unsigned char)c)
+			return ((void *)(str + counter));
 		counter++;
 	}
 	return (NULL);

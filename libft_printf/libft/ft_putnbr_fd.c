@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 12:25:20 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 11:25:42 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/26 13:57:15 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/05/07 18:10:37 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_putnbr_fd(int nbr, int fd, int count)
 {
-	int		counter;
-	char	ch;
+	char	c;
 
-	ch = (char)c;
-	counter = 0;
-	if (ch == '\0')
-		return ((char *)s + ft_strlen(s));
-	while (s[counter])
+	if (nbr == -2147483648)
 	{
-		if (s[counter] == ch)
-		{
-			return ((char *) s + counter);
-		}
-		counter++;
+		write(fd, "-2147483648", 11);
+		return (11);
 	}
-	return (NULL);
+	if (nbr < 0)
+	{
+		write(fd, "-", 1);
+		nbr = -nbr;
+		count++;
+	}
+	if (nbr >= 10)
+	{
+		ft_putnbr_fd(nbr / 10, fd, count);
+		ft_putnbr_fd(nbr % 10, fd, count);
+	}
+	else
+	{
+		c = nbr + '0';
+		write(fd, &c, 1);
+		count++;
+	}
+	return (count);
 }

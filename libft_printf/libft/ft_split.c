@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-#include "libft.h"
+#include "../ft_printf.h"
 
 static int	wordsize(char const *s, char c)
 {

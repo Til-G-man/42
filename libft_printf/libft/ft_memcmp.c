@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 12:25:20 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 11:25:42 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/22 14:57:00 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/04/26 14:25:44 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		counter;
-	char	ch;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			counter;
 
-	ch = (char)c;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	counter = 0;
-	if (ch == '\0')
-		return ((char *)s + ft_strlen(s));
-	while (s[counter])
+	while (counter < n)
 	{
-		if (s[counter] == ch)
-		{
-			return ((char *) s + counter);
-		}
+		if (str1[counter] != str2[counter])
+			return (str1[counter] - str2[counter]);
 		counter++;
 	}
-	return (NULL);
+	return (0);
 }

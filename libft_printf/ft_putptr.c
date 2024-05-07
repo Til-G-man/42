@@ -6,18 +6,22 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:28:07 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/03 17:31:05 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:11:16 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_printf.h"
+#include "ft_printf.h"
 
-void	ft_putptr(unsigned long num)
+int	ft_putptr(unsigned long num)
 {
-	char *hex_digits = "0123456789abcdef";
-	char buffer[20];
-	int i = 0;
+	char	*hex_digits;
+	char	buffer[20];
+	int		i;
+	int		counter;
 
+	i = 0;
+	counter = 0;
+	hex_digits = "0123456789abcdef";
 	while (num)
 	{
 		buffer[i++] = hex_digits[num % 16];
@@ -25,5 +29,9 @@ void	ft_putptr(unsigned long num)
 	}
 	write(1, "0x", 2);
 	while (--i >= 0)
+	{
 		write(1, &buffer[i], 1);
+		counter++;
+	}
+	return (counter);
 }
