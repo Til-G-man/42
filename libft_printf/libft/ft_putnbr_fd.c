@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:57:15 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 18:10:37 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:00:51 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	ft_putnbr_fd(int nbr, int fd, int count)
 	}
 	if (nbr >= 10)
 	{
-		ft_putnbr_fd(nbr / 10, fd, count);
-		ft_putnbr_fd(nbr % 10, fd, count);
+		count = ft_putnbr_fd(nbr / 10, fd, count);
+		count = ft_putnbr_fd(nbr % 10, fd, count);
 	}
 	else
 	{

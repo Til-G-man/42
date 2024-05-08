@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:09:27 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 18:12:16 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:05:34 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,23 @@ int	ft_printf(const char *format, ...)
 
 	counter = 0;
 	va_start(args, format);
-	while (*format++)
+	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'c' || *format == 'd' || *format == 'i'
-				|| *format == 'u')
+			if (*format == 'd' || *format == 'u' || *format == 'i')
 				counter += ft_putnbr_fd(va_arg(args, int), 1, 0);
 			else if (*format == 's')
 				counter += ft_putstr_fd(va_arg(args, char *), 1);
 			else if (*format == 'p')
 				counter += ft_putptr((unsigned long) va_arg(args, void *));
-			else if (*format == 'x' || *format == 'X')
+			else if (*format == 'x')
 				counter += ft_intohex(va_arg(args, unsigned int), 0, 0);
+			else if (*format == 'X')
+				counter += ft_intohex(va_arg(args, unsigned int), 1, 0);
+			else if (*format == 'c')
+				counter += ft_putchar_fd(va_arg(args, int), 1);
 			else if (*format == '%')
 			{
 				write(1, "%%", 1);
@@ -44,6 +47,7 @@ int	ft_printf(const char *format, ...)
 			write(1, format, 1);
 			counter++;
 		}
+		format++;
 	}
 	return (counter);
 }

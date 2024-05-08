@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:28:07 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 18:11:16 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:48:15 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_putptr(unsigned long num)
 		num = num / 16;
 	}
 	write(1, "0x", 2);
+	counter += 2;
 	while (--i >= 0)
 	{
 		write(1, &buffer[i], 1);

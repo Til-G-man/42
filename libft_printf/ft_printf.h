@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:13:50 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 18:07:56 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:06:18 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-void	ft_putchar_fd(char c, int fd);
+int		ft_putchar_fd(char c, int fd);
 int		ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_putnbr_fd(int n, int fd, int count);
