@@ -1,134 +1,91 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   testcode.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 15:20:35 by tilman            #+#    #+#             */
-/*   Updated: 2024/05/08 16:03:01 by tgluckli         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	main(void)
-{
-	int x;
-	int y;
-	char	*test_string = "Test";
-	int		test_int = -4264786;
-	unsigned int test_unsigned_int = 42345;
-	void	*test_ptr = &test_int;
-
-	printf("\033[0;32mTesting ft_printf...\033[0m\n");
-	printf("\n\n");
-	// Test 1: Einfacher String
-	printf("input string:\n");
-	printf("Original printf: ");
-	x = printf("%s", test_string);
-	printf("\nft_printf: ");
-	fflush(stdout);
-	y = ft_printf("%s", test_string);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-	// Test 2: Integer
-	printf("input integer:\n");
-	printf("Original printf: ");
-	x = printf("%d\n", test_int);
-	printf("ft_printf: ");
-	fflush(stdout);
-	y = ft_printf("%d\n", test_int);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-	// Test 3: Unsigned Integer
-	printf("input unsigned integer:\n");
-	printf("Original printf: ");
-	x = printf("%u\n", test_unsigned_int);
-	printf("ft_printf: ");
-	fflush(stdout);
-	y = ft_printf("%u\n", test_unsigned_int);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-	// Test 4: Pointer
-	printf("input pointer:\n");
-	printf("Original printf: ");
-	x = printf("%p\n", test_ptr);
-	printf("ft_printf: ");
-	fflush(stdout);
-	y = ft_printf("%p\n", test_ptr);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-
-	//// Test 4.1: Pointer
-	//printf("input pointer:\n");
-	//printf("Original printf: ");
-	//x = printf("%p %p\n",0, 0);
-	//printf("ft_printf: ");
-	//fflush(stdout);
-	//y = ft_printf("%p %p\n",0, 0);
-	//printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-	//// Test 5: Hexadezimal klein
-	printf("input hexadecimal (lowercase):\n");
-	printf("Original printf: ");
-	x = printf("%x\n", test_unsigned_int);
-	printf("ft_printf: ");
-	fflush(stdout);
-	y = ft_printf("%x\n", test_unsigned_int);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-	// Test 6: Hexadezimal groß
-	printf("input hexadecimal (uppercase):\n");
-	printf("Original printf: ");
-	x = printf("%X\n", test_unsigned_int);
-	printf("ft_printf: ");
-	fflush(stdout);
-	y = ft_printf("%X\n", test_unsigned_int);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-	// Test 7: Prozentzeichen
-	printf("input percentage sign:\n");
-	printf("Original printf: ");
-	x = printf("%%\n");
-	printf("ft_printf: ");
-	fflush(stdout);
-	y = ft_printf("%%\n");
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-	ft_printf("\n\n\n");
-
-	// Test 8: Integer mit %i
-	printf("input integer with %%i:\n");
-	printf("Original printf: ");
-	x = printf("%i\n", test_int);
-	fflush(stdout);
-	printf("ft_printf: ");
-	y = ft_printf("%i\n", test_int);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-
-	// Test 9: Integer mit %d
-	printf("input integer with %%d:\n");
-	printf("Original printf: ");
-	x = printf("%d\n", test_int);
-	fflush(stdout);
-	printf("ft_printf: ");
-	y = ft_printf("%d\n", test_int);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-
-	// Test 10: Einzelnes Zeichen mit %c
-	char test_char = 'A';
-	printf("input character with %%c:\n");
-	printf("Original printf: ");
-	x = printf("%c\n", test_char);
-	fflush(stdout);
-	printf("ft_printf: ");
-	y = ft_printf("%c\n", test_char);
-	printf("\nreturn original: %d\nreturn custom: %d\n\n", x, y);
-
-	// test 11
-
-	printf("all in one string:\n");
-	printf("returnvalue original: %i\n", printf("Original printf: \nString: %s\nInteger: %d\nUnsigned Integer: %u\nPointer: %p\nHexadecimal (lowercase): %x\nHexadecimal (uppercase): %X\nPercent sign: %%\n",
-       test_string, test_int, test_unsigned_int, test_ptr, test_unsigned_int, test_unsigned_int));
-
-	printf("returnvalue custom: %d", ft_printf("ft_printf: \nString: %s\nInteger: %d\nUnsigned Integer: %u\nPointer: %p\nHexadecimal (lowercase): %x\nHexadecimal (uppercase): %X\nPercent sign: %%\n",
-          test_string, test_int, test_unsigned_int, test_ptr, test_unsigned_int, test_unsigned_int));
-
-	printf("\n\n\n");
+void test_simple_string(void) {
+    char *test_string = "Test";
+    int x = printf("Original printf: %s\n", test_string);
+    int y = ft_printf("ft_printf: %s\n", test_string);
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
 }
 
+void test_integer(void) {
+    int test_int = -4264786;
+    int x = printf("Original printf: %d\n", test_int);
+    int y = ft_printf("ft_printf: %d\n", test_int);
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
+}
+
+void test_unsigned_integer(void) {
+    unsigned int test_unsigned_int = 42345;
+    int x = printf("Original printf: %u\n", test_unsigned_int);
+    int y = ft_printf("ft_printf: %u\n", test_unsigned_int);
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
+}
+
+void test_pointer(void) {
+    int test_int;
+    void *test_ptr = &test_int;
+    int x = printf("Original printf: %p\n", test_ptr);
+    int y = ft_printf("ft_printf: %p\n", test_ptr);
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
+}
+
+void test_hexadecimal_lowercase(void) {
+    unsigned int test_unsigned_int = 42345;
+    int x = printf("Original printf: %x\n", test_unsigned_int);
+    int y = ft_printf("ft_printf: %x\n", test_unsigned_int);
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
+}
+
+void test_hexadecimal_uppercase(void) {
+    unsigned int test_unsigned_int = 42345;
+    int x = printf("Original printf: %X\n", test_unsigned_int);
+    int y = ft_printf("ft_printf: %X\n", test_unsigned_int);
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
+}
+
+void test_percentage_sign(void) {
+    int x = printf("Original printf: %%\n");
+    int y = ft_printf("ft_printf: %%\n");
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
+}
+
+void test_integer_with_i(void) {
+    int test_int = -4264786;
+    int x = printf("Original printf: %i\n", test_int);
+    int y = ft_printf("ft_printf: %i\n", test_int);
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
+}
+
+void test_character(void) {
+    char test_char = 'A';
+    int x = printf("Original printf: %c\n", test_char);
+    int y = ft_printf("ft_printf: %c\n", test_char);
+    printf("return original: %d\nreturn custom: %d\n\n", x, y);
+}
+
+void test_all_in_one_string(void) {
+    char *test_string = "Test";
+    int test_int = -4264786;
+    unsigned int test_unsigned_int = 42345;
+    void *test_ptr = &test_int;
+    printf("returnvalue original: %i\n", printf("Original printf: \nString: %s\nInteger: %d\nUnsigned Integer: %u\nPointer: %p\nHexadecimal (lowercase): %x\nHexadecimal (uppercase): %X\nPercent sign: %%\n",
+           test_string, test_int, test_unsigned_int, test_ptr, test_unsigned_int, test_unsigned_int));
+    ft_printf("returnvalue custom: %i\n", ft_printf("ft_printf: \nString: %s\nInteger: %d\nUnsigned Integer: %u\nPointer: %p\nHexadecimal (lowercase): %x\nHexadecimal (uppercase): %X\nPercent sign: %%\n",
+              test_string, test_int, test_unsigned_int, test_ptr, test_unsigned_int, test_unsigned_int));
+}
+
+int main(void) {
+    printf("\033[0;32mTesting ft_printf...\033[0m\n\n");
+    test_simple_string();
+    test_integer();
+    test_unsigned_integer();
+    test_pointer();
+    test_hexadecimal_lowercase();
+    test_hexadecimal_uppercase();
+    test_percentage_sign();
+    test_integer_with_i();
+    test_character();
+    test_all_in_one_string();
+    return 0;
+}

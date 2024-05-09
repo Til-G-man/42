@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_intohex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:35:32 by tilman            #+#    #+#             */
-/*   Updated: 2024/05/08 13:06:03 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:18:09 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	ft_intohex(unsigned int nbr, int capital, int counter)
 		hex_digits = "0123456789ABCDEF";
 	if (nbr >= 16)
 	{
-		counter += ft_intohex(nbr / 16, capital, counter);
-		ft_intohex(nbr % 16, capital, counter);
+		counter = ft_intohex(nbr / 16, capital, counter);
+		counter = ft_intohex(nbr % 16, capital, counter);
 	}
 	else
 	{
