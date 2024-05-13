@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 13:35:09 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/13 11:55:10 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/05/13 14:19:36 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/05/13 14:19:56 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+// get_next_line.h
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
 
-	if (size && nmemb > (SIZE_MAX / size))
-		return (NULL);
-	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, nmemb * size);
-	return (ptr);
-}
+# define BUFFER_SIZE 4096
+
+char	*get_next_line(int fd);
+
+#endif

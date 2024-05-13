@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:28:07 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/08 12:48:15 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:21:55 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	ft_putptr(unsigned long num)
 	int		i;
 	int		counter;
 
+	if (num == 0)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
 	i = 0;
 	counter = 0;
 	hex_digits = "0123456789abcdef";
