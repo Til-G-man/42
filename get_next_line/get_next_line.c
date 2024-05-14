@@ -6,12 +6,12 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:20:17 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/14 19:13:59 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/14 23:11:10 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+/*
 char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
@@ -38,4 +38,20 @@ char	*get_next_line(int fd)
 		return (line);
 	}
 	return (NULL);
+}
+*/
+char	*get_next_line(int fd)
+{
+	static char	next_line;
+	char		*return_str;
+	int			counter;
+	char		*buffer;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (NULL);
+	buffer = (char *) malloc(sizeof(char *) * BUFFER_SIZE);
+	read(fd, buffer, BUFFER_SIZE);
+	while ()
+
+
+
 }
