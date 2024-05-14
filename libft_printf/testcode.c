@@ -80,7 +80,6 @@ void test_string(void)
 	printf("\n\n\n");
 }
 
-
 void test_integer(void) {
     int test_int = -4264786;
     int x = printf("Original printf: %d\n", test_int);
@@ -90,7 +89,7 @@ void test_integer(void) {
 
 void test_unsigned_integer(void) {
 	printf("Testing Unsigned Int:\n");
-	char *test_int[] = {1, 42, -1, 0, INT_MIN, INT_MAX, LONG_MAX, LONG_MIN, ULONG_MAX, LONG_MAX + 1, UINT_MAX, UINT_MAX + 1};
+	char *test_int[] = {1, 42, -1, INT_MIN, INT_MAX, LONG_MAX, LONG_MIN, ULONG_MAX, LONG_MAX + 1, UINT_MAX, UINT_MAX + 1, 0};
 	int i = 0;
 	char *RED = "\033[31m";
 	char *GREEN = "\033[32m";
@@ -112,6 +111,18 @@ void test_unsigned_integer(void) {
 		fflush(stdout);
 		i++;
 	}
+	printf("%sTest %i\nOriginal: ", RESET, i);
+	x = printf("%u\n", 0);
+	printf("custom:   ");
+	fflush(stdout);
+	y = ft_printf("%u\n", 0);
+	if (x == y)
+		printf("%soutput the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%soutput wrong for string '%s%s%s':\noriginal: %d\ncustom: %d",RED, RESET, test_int[i], RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+	fflush(stdout);
+	i++;
 }
 
 void test_pointer(void) {
@@ -182,27 +193,149 @@ void test_all_in_one_string(void) {
 
 void custom_test (void)
 {
-	printf("testing custom_test:\n");
-	printf("returnvalue original: %i\n",printf(" NULL %s NULL ", NULL));
-	printf("returnvalue custom: %i\n",ft_printf(" NULL %s NULL ", NULL));
-	//printf("returnvalue custom: %i\n",ft_printf("%%% a"));
-	//printf("\n\n\n");
+	int i = 0;
+	char *RED = "\033[31m";
+	char *GREEN = "\033[32m";
+	char *RESET = "\033[0m";
+	int	x;
+	int	y;
+	printf("custom test:\n");
+//test 0
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'%%%w'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'%%%w'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 1
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'%.'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'%.'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 2
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'%w'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'%w'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 3
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'Hallo %w Welt'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'Hallo %w Welt'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 4
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'Hallo %%% Welt'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'Hallo %%% Welt'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 5
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'Hallo %%%% Welt'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'Hallo %%%% Welt'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 6
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'Hallo %%%%% Welt'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'Hallo %%%%% Welt'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 7
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("' % hallo'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("' % hallo'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 8
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'Hallo % Welt'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'Hallo % Welt'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
+
+//test 9
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'Hallo \0 Welt'");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'Hallo \0 Welt'");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
 }
-
-/*
-check:
-%%%
-%.
-%\0
-%w
-*/
-
 
 int main(void) {
     printf("Testing ft_printf...\n\n");
     //test_string();
     //test_integer();
-    test_unsigned_integer();
+    //test_unsigned_integer();
     //test_pointer();
     //test_hexadecimal_lowercase();
     //test_hexadecimal_uppercase();
@@ -210,6 +343,6 @@ int main(void) {
     //test_integer_with_i();
     //test_character();
     //test_all_in_one_string();
-	//custom_test();
+	custom_test();
     return 0;
 }

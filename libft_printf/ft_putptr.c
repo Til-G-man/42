@@ -6,11 +6,21 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:28:07 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/13 16:21:55 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:44:38 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	fck25lines(unsigned long num)
+{
+	if (num == 0)
+	{
+		write(1, "(nil)", 5);
+		return (1);
+	}
+	return (0);
+}
 
 int	ft_putptr(unsigned long num)
 {
@@ -19,11 +29,8 @@ int	ft_putptr(unsigned long num)
 	int		i;
 	int		counter;
 
-	if (num == 0)
-	{
-		write(1, "(nil)", 5);
+	if (fck25lines(num))
 		return (5);
-	}
 	i = 0;
 	counter = 0;
 	hex_digits = "0123456789abcdef";

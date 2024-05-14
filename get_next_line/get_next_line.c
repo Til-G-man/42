@@ -6,11 +6,10 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:20:17 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/13 14:20:23 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:13:59 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// get_next_line.c
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)

@@ -45,6 +45,7 @@ libft/ft_putnbr_fd.c \
 ft_putptr.c \
 ft_intohex.c \
 ft_printf.c \
+ft_putunbr_fd.c \
 
 
 OBJ = $(SRC:.c=.o)

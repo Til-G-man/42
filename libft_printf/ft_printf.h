@@ -6,18 +6,18 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:13:50 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/08 16:06:18 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:14:12 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-#define LIBFT_PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdint.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
+# include <stdint.h>
+# include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -56,5 +56,6 @@ int		ft_putnbr_fd(int n, int fd, int count);
 int		ft_putptr(unsigned long num);
 int		ft_intohex(unsigned int nbr, int capital, int counter);
 int		ft_printf(const char *format, ...);
+int		ft_putunbr_fd(unsigned int nbr, int fd, int count);
 
 #endif
