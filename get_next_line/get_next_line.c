@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:20:17 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/14 23:11:10 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:56:29 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,22 @@ char	*get_next_line(int fd)
 	char		*return_str;
 	int			counter;
 	char		*buffer;
+	int			eol;
+
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = (char *) malloc(sizeof(char *) * BUFFER_SIZE);
+	buffer = (char *) malloc(sizeol(char *) * BUFFER_SIZE);
+	if (!buffer)
+		return (NULL);
 	read(fd, buffer, BUFFER_SIZE);
-	while ()
+	eol = 0;
+	while (!eol)
+	{
+		buffer = read(fd, buffer, BUFFER_SIZE);
+		if (ft_strrchr(buffer, '\n'))
+
+	}
+
 
 
 

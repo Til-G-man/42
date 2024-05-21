@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:19:36 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/13 14:19:56 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:53:00 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@
 # define BUFFER_SIZE 4096
 
 char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	*ft_memmove(void *dest, const void *src, size_t n);
+char	*ft_strchr(const char *s, int c);
 
 #endif
