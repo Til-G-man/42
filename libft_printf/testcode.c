@@ -333,16 +333,16 @@ void custom_test (void)
 
 int main(void) {
     printf("Testing ft_printf...\n\n");
-    //test_string();
-    //test_integer();
-    //test_unsigned_integer();
-    //test_pointer();
-    //test_hexadecimal_lowercase();
-    //test_hexadecimal_uppercase();
-    //test_percentage_sign();
-    //test_integer_with_i();
-    //test_character();
-    //test_all_in_one_string();
+    test_string();
+    test_integer();
+    test_unsigned_integer();
+    test_pointer();
+    test_hexadecimal_lowercase();
+    test_hexadecimal_uppercase();
+    test_percentage_sign();
+    test_integer_with_i();
+    test_character();
+    test_all_in_one_string();
 	custom_test();
     return 0;
 }

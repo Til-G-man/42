@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:20:17 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/21 11:56:29 by tilman           ###   ########.fr       */
+/*   Updated: 2024/05/21 18:14:22 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,36 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 */
+#include <stdio.h>
+
 char	*get_next_line(int fd)
 {
-	static char	next_line;
+	static char	*next_line;
 	char		*return_str;
-	int			counter;
 	char		*buffer;
-	int			eol;
-
+	int			backslashn;
+	ssize_t		bytes_read;
+	printf("Starting get_next_line\n");
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = (char *) malloc(sizeol(char *) * BUFFER_SIZE);
-	if (!buffer)
-		return (NULL);
-	read(fd, buffer, BUFFER_SIZE);
-	eol = 0;
-	while (!eol)
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	backslashn = 0;
+	if (next_line && !ft_ft_strchr(next_line, '\n'))
+		return_str = next_line;
+	else if (nextline)
+	while (!backslashn)
 	{
-		buffer = read(fd, buffer, BUFFER_SIZE);
-		if (ft_strrchr(buffer, '\n'))
-
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		buffer[bytes_read] = '\0';
+		backslashn = ft_ft_strchr(buffer, '\n');
+		if (backslashn)
+		{
+			return_str = ft_strjoin(return_str, ft_ft_strlcpy(buffer, backslashn));
+			next_line = ft_ft_strlcpy(&buffer[backslashn + 1], ft_strlen(buffer) - backslashn - 1);
+			return (return_str);
+		}
+		return_str = ft_strjoin(return_str, buffer);
 	}
-
-
-
-
+	free(buffer);
+	return (NULL);
 }

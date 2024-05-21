@@ -3,12 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:00:34 by tilman            #+#    #+#             */
-/*   Updated: 2024/05/21 11:52:51 by tilman           ###   ########.fr       */
+/*   Updated: 2024/05/21 16:28:15 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -56,7 +70,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char	*ft_strchr(const char *s, int c)
+int	ft_ft_strchr(const char *s, int c)
 {
 	int		counter;
 	char	ch;
@@ -64,14 +78,34 @@ char	*ft_strchr(const char *s, int c)
 	ch = (char)c;
 	counter = 0;
 	if (ch == '\0')
-		return ((char *)s + ft_strlen(s));
+		return (ft_strlen(s));
 	while (s[counter])
 	{
 		if (s[counter] == ch)
 		{
-			return ((char *) s + counter);
+			return (counter);
 		}
 		counter++;
 	}
-	return (NULL);
+	return (-1);
+}
+
+char	*ft_ft_strlcpy(const char *src, size_t dstsize)
+{
+	size_t	i;
+	char	*dst;
+
+	if (dstsize == 0)
+		return (NULL);
+	dst = (char *) malloc(sizeof (char *) * dstsize + 1);
+	if (!dst)
+		return(NULL);
+	i = 0;
+	while (src[i] != '\0' && i < dstsize - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }
