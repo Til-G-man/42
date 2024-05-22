@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:00:34 by tilman            #+#    #+#             */
-/*   Updated: 2024/05/22 11:04:53 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:56:50 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*ft_ft_strlcpy(const char *src, size_t dstsize)
 
 	if (dstsize == 0)
 		return (NULL);
-	dst = (char *) malloc(sizeof (char *) * dstsize + 1);
+	dst = (char *) malloc(dstsize + 1);
 	if (!dst)
 		return(NULL);
 	i = 0;
