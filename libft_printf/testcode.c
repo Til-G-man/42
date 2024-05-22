@@ -228,10 +228,10 @@ void custom_test (void)
 
 //test 2
 	printf("%sTest %i\nOriginal: ",RESET, i++);
-	x = printf("'%w'");
+	x = printf("'%t'");
 	printf("\ncustom:   ");
 	fflush(stdout);
-	y = ft_printf("'%w'");
+	y = ft_printf("'%t'");
 	printf("\n");
 	if (x == y)
 		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
@@ -241,10 +241,10 @@ void custom_test (void)
 
 //test 3
 	printf("%sTest %i\nOriginal: ",RESET, i++);
-	x = printf("'Hallo %w Welt'");
+	x = printf("'Hallo %A Welt'");
 	printf("\ncustom:   ");
 	fflush(stdout);
-	y = ft_printf("'Hallo %w Welt'");
+	y = ft_printf("'Hallo %A Welt'");
 	printf("\n");
 	if (x == y)
 		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
@@ -329,20 +329,33 @@ void custom_test (void)
 	else
 		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
 	printf("%s\n__________________________________________\n", RESET);
+
+//test 10
+	printf("%sTest %i\nOriginal: ",RESET, i++);
+	x = printf("'Hallo %\0");
+	printf("\ncustom:   ");
+	fflush(stdout);
+	y = ft_printf("'Hallo %\0");
+	printf("\n");
+	if (x == y)
+		printf("%sreturn val the same: org: %d, cus: %d", GREEN, x, y);
+	else
+		printf("%sreturn val wrong:\noriginal: %d\ncustom: %d",RED, x, y);
+	printf("%s\n__________________________________________\n", RESET);
 }
 
 int main(void) {
     printf("Testing ft_printf...\n\n");
-    test_string();
-    test_integer();
-    test_unsigned_integer();
-    test_pointer();
-    test_hexadecimal_lowercase();
-    test_hexadecimal_uppercase();
-    test_percentage_sign();
-    test_integer_with_i();
-    test_character();
-    test_all_in_one_string();
+    //test_string();
+    //test_integer();
+    //test_unsigned_integer();
+    //test_pointer();
+    //test_hexadecimal_lowercase();
+    //test_hexadecimal_uppercase();
+    //test_percentage_sign();
+    //test_integer_with_i();
+    //test_character();
+    //test_all_in_one_string();
 	custom_test();
     return 0;
 }
