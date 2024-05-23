@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:20:17 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/22 15:59:04 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:17:01 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
+
 /*
 char	*get_next_line(int fd)
 {
@@ -40,7 +42,7 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-#include <stdio.h>
+
 
 char	*get_next_line(int fd)
 {
@@ -98,39 +100,53 @@ char	*get_next_line(int fd)
 }
 */
 
-char	get_read(char *buffer, int fd)
+char	*get_read(char *buffer, int fd)
 {
-	char	*temp;
-	int		newline;
+    char	*temp;
+    int		newline;
 
-	if(0 > ft_ft_strchr(buffer, '\n'))
-	{
-		newline = -1;
-		temp = (char *) malloc(BUFFER_SIZE + (sizeof(char) * 2));
-		if (!temp)
-			return (NULL);
-		read(fd, temp, BUFFER_SIZE);
-		newline = ft_ft_strchr(temp, '\n');
-		while (0 > newline && temp)
-		{
-			buffer = ft_strjoin(buffer, temp);
-			read(fd, temp, BUFFER_SIZE);
-			newline = ft_ft_strchr(temp, '\n');
-		}
-		if (temp)
-		{
-			buffer = ft_strjoin(buffer, temp);
-		}
-		free(temp);
-	}
-	retrun (&buffer);
+    //printf("get_read: Start\n"); // Markierung am Anfang der Funktion
+
+    if(0 > ft_ft_strchr(buffer, '\n'))
+    {
+        //printf("get_read: Kein Zeilenumbruch in buffer gefunden\n");
+        newline = -1;
+        temp = (char *) malloc(BUFFER_SIZE + (sizeof(char) * 2));
+        if (!temp)
+        {
+            //printf("get_read: malloc für temp fehlgeschlagen\n");
+            return (NULL);
+        }
+        read(fd, temp, BUFFER_SIZE);
+        newline = ft_ft_strchr(temp, '\n');
+        while (0 > newline && temp)
+        {
+            //printf("get_read: Schleife, newline: %d\n", newline);
+            buffer = ft_strjoin(buffer, temp);
+            read(fd, temp, BUFFER_SIZE);
+            newline = ft_ft_strchr(temp, '\n');
+        }
+        if (temp)
+        {
+            //printf("get_read: temp wird zum buffer hinzugefügt\n");
+            buffer = ft_strjoin(buffer, temp);
+			//printf("get_read: buffer hinzugefügt buffer: %s\n", buffer);
+        }
+        free(temp);
+    }
+    else
+    {
+        //printf("get_read: Zeilenumbruch in buffer gefunden\n");
+    }
+    //printf("get_read: Ende\n"); // Markierung am Ende der Funktion
+    return (buffer);
 }
 
 char	*single_line(char * buffer)
 {
 	char	*temp;
 
-	temp = ft_ft_strlcpy(buffer, strchr(buffer, '\n'));
+	temp = ft_ft_strlcpy(buffer, ft_ft_strchr(buffer, '\n'));
 	return (temp);
 }
 
@@ -150,9 +166,29 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 	char		*temp;
-
+	char *RED = "\033[31m";
+	char *GREEN = "\033[32m";
+	char *RESET = "\033[0m";
+	printf("%sStarting get_next_line\n", RED);
+	if (buffer)
+		printf("%s\n", buffer);
+	if (buffer && ft_ft_strchr(buffer, '\n') > 0)
+	{
+		printf("gnl: in if\n");
+		temp = single_line(buffer);
+		printf("got single line: %s\n", temp);
+		printf("buffer before free: %s\n", buffer);
+		buffer = free_buffer(buffer);
+		printf("buffer after free: %s\n", buffer);
+		printf("freed buffer in if\n%s", RESET);
+		return (temp);
+	}
+	printf("gnl: in else\n");
 	buffer = get_read(buffer, fd);
+	//printf("got read\n");
 	temp = single_line(buffer);
+	//printf("got single line\n");
 	buffer = free_buffer(buffer);
+	printf("freed buffer\n%s", RESET);
 	return (temp);
 }
