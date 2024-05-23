@@ -6,7 +6,7 @@
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:20:17 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/22 14:55:22 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:59:04 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,21 +98,61 @@ char	*get_next_line(int fd)
 }
 */
 
+char	get_read(char *buffer, int fd)
+{
+	char	*temp;
+	int		newline;
+
+	if(0 > ft_ft_strchr(buffer, '\n'))
+	{
+		newline = -1;
+		temp = (char *) malloc(BUFFER_SIZE + (sizeof(char) * 2));
+		if (!temp)
+			return (NULL);
+		read(fd, temp, BUFFER_SIZE);
+		newline = ft_ft_strchr(temp, '\n');
+		while (0 > newline && temp)
+		{
+			buffer = ft_strjoin(buffer, temp);
+			read(fd, temp, BUFFER_SIZE);
+			newline = ft_ft_strchr(temp, '\n');
+		}
+		if (temp)
+		{
+			buffer = ft_strjoin(buffer, temp);
+		}
+		free(temp);
+	}
+	retrun (&buffer);
+}
+
+char	*single_line(char * buffer)
+{
+	char	*temp;
+
+	temp = ft_ft_strlcpy(buffer, strchr(buffer, '\n'));
+	return (temp);
+}
+
+char	*free_buffer(char *buffer)
+{
+	char	*temp;
+	int		i;
+
+	while (buffer[i] != '\n')
+		i++;
+	temp = ft_ft_strlcpy(&buffer[i], ft_strlen(&buffer[i]));
+	return (temp);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	char		*line;
+	char		*temp;
 
-	line = get_line(buffer, fd);
+	buffer = get_read(buffer, fd);
+	temp = single_line(buffer);
 	buffer = free_buffer(buffer);
-	return (line);
-}
-
-char	*get_line(char *buffer, int fd)
-{
-	char	*temp;
-
-	temp = (char *) malloc(BUFFER_SIZE + (sizeof(char) * 2));
-	read(fd, temp, BUFFER_SIZE);
-
+	return (temp);
 }
