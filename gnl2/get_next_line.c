@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:20:30 by tilman            #+#    #+#             */
-/*   Updated: 2024/05/24 03:05:44 by tilman           ###   ########.fr       */
+/*   Updated: 2024/05/24 18:50:55 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_strchr(const char *s, int c)
 }
 
 // gets 2 strings and merge them - returns the new string
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		strlen1;
@@ -74,10 +74,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	//printf("ft_strjoin: try to malloc\n");
 	str = malloc(sizeof(char) * (strlen1 + strlen2 + 1));
 	if (str == NULL)
-	{
-		//printf("ft_strjoin: malloc fehlgeschlagen\n");
 		return (NULL);
-	}
 	i = 0;
 	while (s1 && s1[i])
 	{
@@ -90,6 +87,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	str[strlen1 + strlen2] = '\0';
+	free(s1);
+	free(s2);
 	return (str);
 }
 
@@ -162,9 +161,10 @@ char	*splitbufferback(char *buffer)
 	temp = (char *)malloc(allocate);
 	if (temp == NULL)
 		return (NULL);
+	i = 0;
 	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
-	*buffer += i;
+	buffer += i;
 	i = 0;
 	while (buffer[i + 1]!= '\0')
 	{
