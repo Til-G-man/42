@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:20:30 by tilman            #+#    #+#             */
-/*   Updated: 2024/06/03 09:56:41 by tilman           ###   ########.fr       */
+/*   Updated: 2024/06/03 15:50:32 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,33 +51,20 @@ char	*ft_strdup(char *s)
 // gets a string and a cahr and seachr for the char - returns the index of char or -1 if not found
 int	ft_strchr(const char *s, int c)
 {
-    int		counter;
+	int	counter;
 
 	if (!s)
-	{
-		//printf("ft_ft_strchr: s ist NULL\n");
 		return (-1);
-	}
-	//printf("ft_ft_strchr: s ist nicht NULL\n");
-    if (c == '\0')
-    {
-        //printf("ft_ft_strchr: Suche nach '\\0'\n");
+	if (c == '\0')
 		return (ft_strlen((char *)s));
-    }
-	//printf("ft_ft_strchr: Suche nach Zeichen: '%c' in string '%s'\n", c, s); // Markierung vor Schleife
 	counter = 0;
-	while (s[counter] && s)
-    {
-		//printf("Checking sign %c\n", s[counter]); // Hinzugefügt für Debugging
+	while (s[counter])
+	{
 		if (s[counter] == c)
-        {
-            //printf("ft_ft_strchr: Zeichen gefunden an Position %d\n", counter);
-            return (counter);
-        }
-        counter++;
-    }
-    //printf("ft_ft_strchr: Zeichen nicht gefunden\n");
-    return (-1);
+			return (counter);
+		counter++;
+	}
+	return (-1);
 }
 
 // gets 2 strings and merge them - returns the new string - the input strings get freed
@@ -116,23 +103,24 @@ char	*readtillnewline(int fd)
 	char	*buffer;
 	int		i;
 
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if(!buffer)
-		return (NULL);
-	// temp = malloc(sizeof(char) * (ft_strlen(buffer) + 1));
+	//buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	//if(!buffer)
+	//	return (NULL);
 	temp = NULL;
-	// if(!temp)
-	// 	return (NULL);
 	while (ft_strchr(temp, '\n') == -1)
 	{
+		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if(!buffer)
+			return (NULL);
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i <= 0)
+		{
+			free (buffer);
 			return (NULL);
+		}
 		buffer[i] = '\0';
 		temp = ft_strjoin(temp, buffer);
 	}
-	if (buffer)
-		free (buffer);
 	return (temp);
 }
 
@@ -167,31 +155,59 @@ char	*splitbufferfront(char *buffer)
 	return (temp);
 }
 
-// gets a strings and split them on \n - returns the back string includet \0
+//// gets a strings and split them on \n - returns the back string includet \0 (not includet the first \n)
+//char	*splitbufferback(char *buffer)
+//{
+//	char	*temp;
+//	int		i;
+//	int		allocate;
+
+//	if (ft_strchr(buffer, '\n') == -1 || !buffer)
+//		return (NULL);
+//	allocate = sizeof(char) * (ft_strlen(buffer) - ft_strchr(buffer, '\n') + 1);
+//	temp = (char *)malloc(allocate);
+//	if (temp == NULL)
+//		return (NULL);
+//	i = 0;
+//	while (buffer[i] != '\0' && buffer[i] != '\n')
+//		i++;
+//	buffer += i;
+//	i = 0;
+//	while (buffer[i + 1]!= '\0')
+//	{
+//		temp[i] = buffer[i + 1];
+//		i++;
+//	}
+//	temp[i] = '\0';
+//	return (temp);
+//}
+
+// gets a strings and split them on \n - returns the back string includet \0 (not includet the first \n)
 char	*splitbufferback(char *buffer)
 {
 	char	*temp;
 	int		i;
-	int		allocate;
 
+	temp = NULL;
 	if (ft_strchr(buffer, '\n') == -1 || !buffer)
+	{
+		free (buffer);
+		free (temp);
 		return (NULL);
-	allocate = sizeof(char) * (ft_strlen(buffer) - ft_strchr(buffer, '\n') + 1);
-	temp = (char *)malloc(allocate);
-	if (temp == NULL)
-		return (NULL);
+	}
 	i = 0;
 	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
-	buffer += i;
-	i = 0;
-	while (buffer[i + 1]!= '\0')
+	if (buffer[i] == '\n')
 	{
-		temp[i] = buffer[i + 1];
-		i++;
+		temp = ft_strdup(&buffer[i]);
+		printf("\n__________________________________\n\n\ntemp: %s\n\n\n__________________________________\n", temp);
+		free (buffer);
+		return (temp);
 	}
-	temp[i] = '\0';
-	return (temp);
+	free (buffer);
+	free (temp);
+	return (NULL);
 }
 
 char	*get_next_line(int fd)
@@ -199,6 +215,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*temp;
 
+	temp = NULL;
 	buffer = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -210,7 +227,8 @@ char	*get_next_line(int fd)
 		buffer = ft_strjoin(buffer, readtillnewline(fd));
 	if (0 <= ft_strchr(buffer, '\n'))
 	{
-		free (temp);
+		if (temp)
+			free (temp);
 		temp = splitbufferfront(buffer);
 		buffer = splitbufferback(buffer);
 	}

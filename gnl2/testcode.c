@@ -7,14 +7,14 @@ int	main(void)
 {
 	int	fd;
 	int	i;
-	char *RED = "\033[31m";
 	char *GREEN = "\033[32m";
 	char *RESET = "\033[0m";
 	char *str;
 
 	i = 0;
 	fd = open("testtext.txt", O_RDONLY);
-	while (str = get_next_line(fd))
+	str = get_next_line(fd);
+	while (str)
 	{
 		//printf("%sin loop\n%s", GREEN, RESET);
 		//printf("%sline %i: %s", GREEN, i, RESET);
@@ -22,6 +22,7 @@ int	main(void)
 		// printf("calling get_next_line");
 		if (str)
 			free (str);
+		str = get_next_line(fd);
 		//printf("Done\n");
 	}
 	printf("outside of loop");
