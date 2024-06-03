@@ -14,17 +14,18 @@ int	main(void)
 
 	i = 0;
 	fd = open("testtext.txt", O_RDONLY);
-	str = get_next_line(fd);
-	while (str)
+	while (str = get_next_line(fd))
 	{
 		//printf("%sin loop\n%s", GREEN, RESET);
 		//printf("%sline %i: %s", GREEN, i, RESET);
 		printf("%s%s%s",GREEN, str, RESET);
 		// printf("calling get_next_line");
-		str = get_next_line(fd);
+		if (str)
+			free (str);
 		//printf("Done\n");
 	}
 	printf("outside of loop");
 	close(fd);
+	free (str);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:20:30 by tilman            #+#    #+#             */
-/*   Updated: 2024/05/24 18:50:55 by tilman           ###   ########.fr       */
+/*   Updated: 2024/06/03 09:56:41 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,25 @@ size_t	ft_strlen(char *str)
 		i++;
 	}
 	return (i);
+}
+
+// gets a string and copies the string to a new location returns a pointer to the new string (the original still exist)
+char	*ft_strdup(char *s)
+{
+	char	*str;
+	int		counter;
+
+	str = malloc(ft_strlen(s) + 1);
+	if (str == NULL)
+		return (NULL);
+	counter = 0;
+	while (s[counter])
+	{
+		str[counter] = s[counter];
+		counter++;
+	}
+	str[counter] = '\0';
+	return (str);
 }
 
 // gets a string and a cahr and seachr for the char - returns the index of char or -1 if not found
@@ -61,17 +80,15 @@ int	ft_strchr(const char *s, int c)
     return (-1);
 }
 
-// gets 2 strings and merge them - returns the new string
+// gets 2 strings and merge them - returns the new string - the input strings get freed
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		strlen1;
 	int		strlen2;
 	int		i;
-	//printf("starting ft_strjoin\n");
 	strlen1 = ft_strlen((char *) s1);
 	strlen2 = ft_strlen((char *) s2);
-	//printf("ft_strjoin: try to malloc\n");
 	str = malloc(sizeof(char) * (strlen1 + strlen2 + 1));
 	if (str == NULL)
 		return (NULL);
@@ -86,12 +103,11 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i] = s2[i - strlen1];
 		i++;
 	}
-	str[strlen1 + strlen2] = '\0';
+	str[strlen1 + strlen2 - 1] = '\0';
 	free(s1);
 	free(s2);
 	return (str);
 }
-
 
 //gets the fd and read in BUFFER_SIZE blocks until a newline is found - Returns a string which contains the '\n' and problably more
 char	*readtillnewline(int fd)
@@ -115,7 +131,8 @@ char	*readtillnewline(int fd)
 		buffer[i] = '\0';
 		temp = ft_strjoin(temp, buffer);
 	}
-	free (buffer);
+	if (buffer)
+		free (buffer);
 	return (temp);
 }
 
@@ -144,6 +161,8 @@ char	*splitbufferfront(char *buffer)
 		temp[i] = '\n';
 		i++;
 	}
+	// if (ft_strchr(buffer, '\n') == -1)
+	// 	free (buffer);
 	temp[i] = '\0';
 	return (temp);
 }
@@ -179,43 +198,26 @@ char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	char		*temp;
-	// int			eof;
-	// int			buffer_size;
 
-	//printf("starting get_next_line\n");
-	// if (buffer)
-	//  	printf("buffer[0] = '%c'\nbuffer is: \n##########\n\n##########\n", buffer[0]);
-	// eof = 0;
+	buffer = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	//printf("going throu cases\n");
 	if(!buffer)
-	{
-		//printf("buffer is NULL\n");
 		buffer = readtillnewline(fd);
-		//printf("buffer is : \n##########\n%s\n##########\n", buffer);
-		// if (sizeof(buffer) < BUFFER_SIZE)
-		// 	eof = 1;
-	}
+	if (!buffer)
+		return (NULL);
 	else if (0 > ft_strchr(buffer, '\n'))
-	{
-		//printf("buffer is not NULL but no newline found\n");
-		// buffer_size = sizeof(buffer);
 		buffer = ft_strjoin(buffer, readtillnewline(fd));
-		// if (sizeof(buffer) < BUFFER_SIZE + buffer_size)
-		// 	eof = 1;
-	}
 	if (0 <= ft_strchr(buffer, '\n'))
 	{
-		//printf("newline found in buffer\n");
+		free (temp);
 		temp = splitbufferfront(buffer);
 		buffer = splitbufferback(buffer);
 	}
 	else
 	{
-		temp = buffer;
-		buffer = NULL;
+		free (temp);
+		return (buffer);
 	}
-	//printf("temp is: \n##########\n'%s'\n##########\n", temp);
 	return (temp);
 }
