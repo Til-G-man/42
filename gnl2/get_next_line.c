@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:20:30 by tilman            #+#    #+#             */
-/*   Updated: 2024/06/03 15:50:32 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/06/08 04:40:15 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "get_next_line.h"
 #include <stdio.h>
+#include <strings.h>
 
 // gets a string and counts the len - rteturn the len
 size_t	ft_strlen(char *str)
@@ -35,6 +36,8 @@ char	*ft_strdup(char *s)
 	char	*str;
 	int		counter;
 
+	if (!s)
+		return (NULL);
 	str = malloc(ft_strlen(s) + 1);
 	if (str == NULL)
 		return (NULL);
@@ -76,6 +79,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	strlen1 = ft_strlen((char *) s1);
 	strlen2 = ft_strlen((char *) s2);
+	if (strlen1 + strlen2 == 0)
+		return (NULL);
 	str = malloc(sizeof(char) * (strlen1 + strlen2 + 1));
 	if (str == NULL)
 		return (NULL);
@@ -90,14 +95,13 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i] = s2[i - strlen1];
 		i++;
 	}
-	str[strlen1 + strlen2 - 1] = '\0';
-	free(s1);
-	free(s2);
+	str[strlen1 + strlen2] = '\0';
+	free (s1);
 	return (str);
 }
 
 //gets the fd and read in BUFFER_SIZE blocks until a newline is found - Returns a string which contains the '\n' and problably more
-char	*readtillnewline(int fd)
+char	*readtillnewline(int fd, char *sbuffer)
 {
 	char	*temp;
 	char	*buffer;
@@ -114,12 +118,19 @@ char	*readtillnewline(int fd)
 			return (NULL);
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i <= 0)
-		{
-			free (buffer);
-			return (NULL);
-		}
+			break ;
 		buffer[i] = '\0';
 		temp = ft_strjoin(temp, buffer);
+		free (buffer);
+		buffer = NULL;
+	}
+	if (buffer)
+		free (buffer);
+	if (sbuffer)
+	{
+		free(sbuffer);
+		sbuffer = NULL;
+
 	}
 	return (temp);
 }
@@ -155,58 +166,32 @@ char	*splitbufferfront(char *buffer)
 	return (temp);
 }
 
-//// gets a strings and split them on \n - returns the back string includet \0 (not includet the first \n)
-//char	*splitbufferback(char *buffer)
-//{
-//	char	*temp;
-//	int		i;
-//	int		allocate;
-
-//	if (ft_strchr(buffer, '\n') == -1 || !buffer)
-//		return (NULL);
-//	allocate = sizeof(char) * (ft_strlen(buffer) - ft_strchr(buffer, '\n') + 1);
-//	temp = (char *)malloc(allocate);
-//	if (temp == NULL)
-//		return (NULL);
-//	i = 0;
-//	while (buffer[i] != '\0' && buffer[i] != '\n')
-//		i++;
-//	buffer += i;
-//	i = 0;
-//	while (buffer[i + 1]!= '\0')
-//	{
-//		temp[i] = buffer[i + 1];
-//		i++;
-//	}
-//	temp[i] = '\0';
-//	return (temp);
-//}
-
 // gets a strings and split them on \n - returns the back string includet \0 (not includet the first \n)
 char	*splitbufferback(char *buffer)
 {
 	char	*temp;
+	// char *buf_tmp;
 	int		i;
 
 	temp = NULL;
 	if (ft_strchr(buffer, '\n') == -1 || !buffer)
 	{
 		free (buffer);
-		free (temp);
 		return (NULL);
 	}
 	i = 0;
+	// buf_tmp = buffer;
 	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
 	if (buffer[i] == '\n')
 	{
-		temp = ft_strdup(&buffer[i]);
-		printf("\n__________________________________\n\n\ntemp: %s\n\n\n__________________________________\n", temp);
+		temp = ft_strdup(&buffer[++i]);
+		// printf("\n__________________________________\n\n\ntemp: %s\n\n\n__________________________________\n", temp);
+		// free (buf_tmp);
 		free (buffer);
 		return (temp);
 	}
 	free (buffer);
-	free (temp);
 	return (NULL);
 }
 
@@ -215,27 +200,32 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*temp;
 
+	if (buffer)
+	{
+		printf("\033[1;31mbuffer: '%s'\033[0m\n", buffer);
+	}
 	temp = NULL;
-	buffer = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if(!buffer)
-		buffer = readtillnewline(fd);
-	if (!buffer)
-		return (NULL);
-	else if (0 > ft_strchr(buffer, '\n'))
-		buffer = ft_strjoin(buffer, readtillnewline(fd));
-	if (0 <= ft_strchr(buffer, '\n'))
+	//if(!buffer)
+	//	buffer = readtillnewline(fd, buffer);
+	if (0 > ft_strchr(buffer, '\n'))
 	{
-		if (temp)
-			free (temp);
-		temp = splitbufferfront(buffer);
-		buffer = splitbufferback(buffer);
+		if (!buffer)
+			buffer = readtillnewline(fd, buffer);
+		else
+			buffer = ft_strjoin(buffer, readtillnewline(fd, buffer));
 	}
-	else
+	if (0 > ft_strchr(buffer, '\n'))
 	{
-		free (temp);
+		// free (temp);
+		if (!buffer)
+			return (NULL);
+		// temp = ft_strdup(buffer);
+		// free (buffer);
 		return (buffer);
 	}
+	temp = splitbufferfront(buffer);
+	buffer = splitbufferback(buffer);
 	return (temp);
 }

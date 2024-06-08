@@ -27,6 +27,8 @@ int	main(void)
 	}
 	printf("outside of loop");
 	close(fd);
-	free (str);
+	// get_next_line(fd);
+	//free (str);
+	printf("test");
 	return (0);
 }
