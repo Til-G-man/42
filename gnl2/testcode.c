@@ -10,7 +10,7 @@ int	main(void)
 	char *RESET = "\033[0m";
 	char *str;
 
-	fd = open("testtext.txt", O_RDONLY);
+	fd = open("1char.txt", O_RDONLY);
 	str = get_next_line(fd);
 	while (str)
 	{

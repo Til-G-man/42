@@ -3,29 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:19:36 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/21 17:04:56 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:53:43 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4
+# endif
+
+# include <ctype.h>
+# include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <string.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
+int		ft_strlen(char *s);
+char	*ft_strdup(char *str, int len);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_loop(char *str1, char *str2);
+int		have_n(char	*temp);
+char	*print_line(char **temp);
 char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_memmove(void *dest, const void *src, size_t n);
-int		ft_ft_strchr(const char *s, int c);
-size_t	ft_strlen(const char *str);
-char	*ft_ft_strlcpy(const char *src, size_t dstsize);
 
-#endif
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4096
 #endif

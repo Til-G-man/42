@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:20:00 by tilman            #+#    #+#             */
-/*   Updated: 2024/06/12 19:52:07 by tilman           ###   ########.fr       */
+/*   Updated: 2024/07/03 11:44:02 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ char	*get_next_line(int fd);
 #endif
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4096
+# define BUFFER_SIZE 10
 #endif

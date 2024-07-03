@@ -6,136 +6,95 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:00:34 by tilman            #+#    #+#             */
-/*   Updated: 2024/05/23 18:23:17 by tilman           ###   ########.fr       */
+/*   Updated: 2024/07/03 14:07:49 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#include <stdio.h> // Hinzugefügt für printf
-
-size_t	ft_strlen(const char *str)
+// gets a string and an int as input
+// copy the string into a new string and returns it
+// it only copy n chars
+char	*ft_strdup(char *str, int len)
 {
-    int	i;
+	char	*array;
+	int		count;
 
-	if (str == NULL)
-        return (0);
+	if (!str || !len)
+		return (NULL);
+	count = -1;
+	array = (char *)malloc((len + 1) * sizeof(char));
+	while (++count < len)
+		array[count] = str[count];
+	array[count] = '\0';
+	return (array);
+}
+
+// gets 2 strings as input
+// creates a new sting and put both strings inside (fist s1)
+// returns the new string and free s1 (s2 is still alloc)
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	i;
+	int		len;
+	char	*array;
+
 	i = 0;
-    while (str[i])
-    {
-        i++;
-    }
-    //printf("ft_strlen: Länge = %d\n", i); // Markierung nach Berechnung der Länge
-    return (i);
+	len = ft_strlen(s2);
+	if (!s1)
+		return (ft_strdup(s2, len));
+	len = len + ft_strlen(s1);
+	array = (char *)malloc(sizeof(char) * (len + 1));
+	if (!array)
+		return (NULL);
+	len = 0;
+	while (s1[i])
+		array[len++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		array[len++] = s2[i++];
+	array[len] = '\0';
+	free(s1);
+	return (array);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+// gets a string as input
+// returns 1 if the string contais a new line and 0 if not
+int	have_n(char	*temp)
 {
-    char	*str;
-    int		strlen1;
-    int		strlen2;
-	//printf("starting ft_strjoin\n");
-    strlen1 = ft_strlen(s1);
-    strlen2 = ft_strlen(s2);
-	//printf("ft_strjoin: try to malloc\n");
-    str = malloc(sizeof(char) * (strlen1 + strlen2 + 1));
-	if (str == NULL)
-	{
-        //printf("ft_strjoin: malloc fehlgeschlagen\n");
-        return (NULL);
-    }
-	//printf("ft_strjoin: starting movement\n");
-    ft_memmove(str, s1, strlen1);
-    ft_memmove(str + strlen1, s2, strlen2);
-    str[strlen1 + strlen2] = '\0';
-    //printf("ft_strjoin: Ergebnis = %s\n", str); // Markierung nach Erstellung des neuen Strings
-    return (str);
+	int		i;
+
+	if (!temp)
+		return (0);
+	i = -1;
+	while (temp[++i])
+		if (temp[i] == 10)
+			return (1);
+	return (0);
 }
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+// gets a pointer to a pointer to a string as input
+//"splits" the string on the first '\n'
+// the input pointer gets change so it points on the right side
+// it returns the left side of the "split" string
+char	*print_line(char **temp)
 {
-    char		*d;
-    const char	*s;
-    int			count;
+	int		counter;
+	char	*return_line;
+	char	*str;
 
-    d = (char *)dest;
-    s = (const char *)src;
-    count = 0;
-    if (dest < src)
-    {
-        while (count < (int) n)
-        {
-            d[count] = s[count];
-            count++;
-        }
-    }
-    else if (dest > src)
-    {
-        count = n - 1;
-        while (count >= 0)
-        {
-            d[count] = s[count];
-            count--;
-        }
-    }
-    //printf("ft_memmove: Bewegung abgeschlossen\n"); // Markierung nach Durchführung von memmove
-    return (dest);
-}
-
-int	ft_ft_strchr(const char *s, int c)
-{
-    int		counter;
-
-	if (!s)
-	{
-		//printf("ft_ft_strchr: s ist NULL\n");
-		return (-1);
-	}
-	//printf("ft_ft_strchr: s ist nicht NULL\n");
-    if (c == '\0')
-    {
-        //printf("ft_ft_strchr: Suche nach '\\0'\n");
-        return (ft_strlen(s));
-    }
-	//printf("ft_ft_strchr: Suche nach Zeichen: '%c' in string '%s'\n", c, s); // Markierung vor Schleife
+	if (!*temp)
+		return (NULL);
+	str = *temp;
 	counter = 0;
-	while (s[counter] && s)
-    {
-		//printf("Checking sign %c\n", s[counter]); // Hinzugefügt für Debugging
-		if (s[counter] == c)
-        {
-            //printf("ft_ft_strchr: Zeichen gefunden an Position %d\n", counter);
-            return (counter);
-        }
-        counter++;
-    }
-    //printf("ft_ft_strchr: Zeichen nicht gefunden\n");
-    return (-1);
-}
-
-char	*ft_ft_strlcpy(const char *src, size_t dstsize)
-{
-    size_t	i;
-    char	*dst;
-
-    if (dstsize == 0)
-    {
-        //printf("ft_ft_strlcpy: dstsize ist 0, Rückgabe NULL\n");
-        return (NULL);
-    }
-    dst = (char *) malloc(dstsize + 1);
-    if (!dst)
-    {
-        //printf("ft_ft_strlcpy: malloc fehlgeschlagen\n");
-        return(NULL);
-    }
-    i = 0;
-    while (src[i] != '\0' && i < dstsize - 1)
-    {
-        dst[i] = src[i];
-        i++;
-    }
-    dst[i] = '\0';
-    //printf("ft_ft_strlcpy: Kopiert = %s\n", dst); // Markierung nach Kopieren
-    return (dst);
+	while (str[counter] && str[counter] != 10)
+		counter++;
+	if (str[counter] == 10)
+		counter++;
+	return_line = ft_strdup(str, counter);
+	*temp = ft_strdup(str + counter, ft_strlen(str + counter));
+	if (str)
+		free(str);
+	str = NULL;
+	return (return_line);
 }
