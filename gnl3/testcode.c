@@ -12,9 +12,10 @@ int	main(void)
 
 	fd = open("testtext.txt", O_RDONLY);
 	str = get_next_line(fd);
+	printf("Start\n");
 	while (str)
 	{
-		printf("line: %s%s%s",GREEN, str, RESET);
+		printf("\n______________________________________\nfunction call: '%s%s%s'\n",GREEN, str, RESET);
 		if (str)
 			free (str);
 		str = get_next_line(fd);
