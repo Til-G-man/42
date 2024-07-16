@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:08:44 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/16 11:14:44 by tilman           ###   ########.fr       */
+/*   Updated: 2024/07/16 17:23:09 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int main()
 
     mlx = mlx_init();
     win = mlx_new_window(mlx, 800, 600, "testwindow");
-	draw_line(mlx, win, 100);
-	// mlx_pixel_put(mlx, win, 100, 100, 0xFFFFFF);
-	// sleep(1);
-	// mlx_pixel_put(mlx, win, 200, 200, 0xFFFFFF);
-	// sleep(1);
-	// mlx_pixel_put(mlx, win, 300, 300, 0xFFFFFF);
+	//draw_line(mlx, win, 100);
+	mlx_pixel_put(mlx, win, 100, 100, 0xFFFFFF);
+	sleep(1);
+	mlx_pixel_put(mlx, win, 200, 200, 0xFFFFFF);
+	sleep(1);
+	mlx_pixel_put(mlx, win, 300, 300, 0xFFFFFF);
 	mlx_loop(mlx);
 	// sleep(1);
 	// draw_line(mlx, win, 200);
