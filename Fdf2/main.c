@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 17:20:48 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/17 17:47:47 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/07/17 18:15:15 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/07/17 18:16:22 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_FILE_H
-# define READ_FILE_H
-
-#include "../Get_next_line/get_next_line.h"
-#include "../Libft/libft.h"
-void	read_file(char *FILE);
-
-#endif
+#include <stdio.h>
+int	main(void)
+{
+	printf("Starting program...\n");
+}

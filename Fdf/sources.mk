@@ -1,40 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    sources.mk                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/15 17:41:33 by tilman            #+#    #+#              #
-#    Updated: 2024/07/17 18:05:26 by tgluckli         ###   ########.fr        #
+#    Created: 2024/07/17 17:34:17 by tgluckli          #+#    #+#              #
+#    Updated: 2024/07/17 18:00:56 by tgluckli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
-
-CFLAGS = -Wall -Werror -Wextra
-AR = ar
-
-ARFLAGS = rcs
-
-NAME = libftprintf.a
-
-SRC = main.c
-
-OBJ = $(SRC:.c=.o)
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
-	rm -f $(OBJ)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
+SRC =	main.c \
+#utils/Read_file/read_file.c \
+#utils/Get_next_line/get_next_line.c \
+#utils/Get_next_line/get_next_line_utils.c \
