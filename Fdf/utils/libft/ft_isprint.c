@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 17:20:44 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/15 17:23:57 by tilman           ###   ########.fr       */
+/*   Created: 2024/04/16 18:10:50 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/05/06 13:54:04 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-This Funktion gets a fd and returns its values in an 3D array
-*/
-void	read_file(void)
+int	ft_isprint(int c)
 {
-
+	if (32 <= c && c <= 126)
+		return (16384);
+	else
+		return (0);
 }

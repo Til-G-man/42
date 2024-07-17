@@ -1,0 +1,57 @@
+# Libft
+
+Libft ist eine eigene C-Bibliothek, die einige der Standardfunktionen von C neu implementiert sowie zusätzliche nützliche Funktionen bietet, die nicht in der libc enthalten sind.
+
+## Funktionen
+
+### Charakterprüfung
+
+- `ft_isalpha` - Prüft, ob das übergebene Zeichen ein Buchstabe ist. Gibt 1 zurück, wenn wahr, sonst 0.
+- `ft_isdigit` - Prüft, ob das übergebene Zeichen eine Ziffer ist. Gibt 1 zurück, wenn wahr, sonst 0.
+- `ft_isalnum` - Prüft, ob das übergebene Zeichen ein Buchstabe oder eine Ziffer ist. Gibt 1 zurück, wenn wahr, sonst 0.
+- `ft_isascii` - Prüft, ob das übergebene Zeichen im ASCII-Zeichensatz ist. Gibt 1 zurück, wenn wahr, sonst 0.
+- `ft_isprint` - Prüft, ob das übergebene Zeichen druckbar ist. Gibt 1 zurück, wenn wahr, sonst 0.
+- `ft_toupper` - Konvertiert ein Kleinbuchstaben-Zeichen in einen Großbuchstaben. Gibt das konvertierte Zeichen zurück.
+- `ft_tolower` - Konvertiert ein Großbuchstaben-Zeichen in einen Kleinbuchstaben. Gibt das konvertierte Zeichen zurück.
+
+### Stringmanipulation
+
+- `ft_strlen` - Gibt die Länge eines Strings zurück.
+- `ft_strlcpy` - Kopiert Strings mit Größenbeschränkung. Gibt die Länge des kopierten Strings zurück.
+- `ft_strlcat` - Hängt einen String an einen anderen an, mit Größenbeschränkung. Gibt die Länge des resultierenden Strings zurück.
+- `ft_strchr` - Sucht nach einem Zeichen in einem String. Gibt einen Zeiger auf das erste Vorkommen des Zeichens zurück, oder NULL.
+- `ft_strrchr` - Sucht nach einem Zeichen in einem String, Suche beginnt am Ende des Strings. Gibt einen Zeiger auf das erste Vorkommen des Zeichens zurück, oder NULL.
+- `ft_strncmp` - Vergleicht zwei Strings bis zu n Zeichen. Gibt Differenz der ASCII-Werte der ersten unterschiedlichen Zeichen zurück, sonst 0.
+- `ft_strnstr` - Sucht nach einem Substring in einem String bis zu n Zeichen. Gibt einen Zeiger auf den Anfang des Substrings zurück, oder NULL.
+- `ft_strdup` - Dupliziert einen String. Gibt einen Zeiger auf den neuen String zurück.
+- `ft_substr` - Extrahiert einen Substring aus einem String. Gibt einen Zeiger auf den neuen Substring zurück.
+- `ft_strjoin` - Verbindet zwei Strings zu einem neuen String. Gibt einen Zeiger auf den neuen String zurück.
+- `ft_strtrim` - Entfernt alle Vorkommen eines Satzes von Zeichen vom Anfang und Ende eines Strings. Gibt einen Zeiger auf den neuen String zurück.
+- `ft_split` - Teilt einen String in Substrings, getrennt durch ein Trennzeichen. Gibt ein Array von Strings zurück.
+- `ft_strmapi` - Wendet eine Funktion auf jedes Zeichen eines Strings an. Gibt einen Zeiger auf den neuen String zurück.
+
+### Speichermanipulation
+
+- `ft_memset` - Füllt einen Speicherbereich mit einem bestimmten Zeichen. Gibt einen Zeiger auf den Speicherbereich zurück.
+- `ft_bzero` - Setzt einen Speicherbereich auf Null.
+- `ft_memcpy` - Kopiert n Bytes von einem Speicherbereich in einen anderen. Gibt einen Zeiger auf den Ziel-Speicherbereich zurück.
+- `ft_memmove` - Kopiert n Bytes von einem Speicherbereich in einen anderen, sich überlappende Bereiche werden korrekt behandelt. Gibt einen Zeiger auf den Ziel-Speicherbereich zurück.
+- `ft_memchr` - Sucht nach einem Zeichen in einem Speicherbereich. Gibt einen Zeiger auf das erste Vorkommen des Zeichens im Speicherbereich zurück, oder NULL.
+- `ft_memcmp` - Vergleicht zwei Speicherbereiche. Gibt die Differenz der ASCII-Werte der ersten unterschiedlichen Bytes zurück, sonst 0.
+
+### Konvertierung
+
+- `ft_atoi` - Konvertiert einen String zu einem Integer. Gibt den konvertierten Wert als int zurück.
+- `ft_itoa` - Konvertiert einen Integer zu einem String. Gibt einen Zeiger auf den neuen String zurück.
+
+### Ausgabe
+
+- `ft_putchar_fd` - Schreibt ein Zeichen zu einem File Descriptor.
+- `ft_putstr_fd` - Schreibt einen String zu einem File Descriptor.
+- `ft_putendl_fd` - Schreibt einen String zu einem File Descriptor, gefolgt von einem Zeilenumbruch.
+- `ft_putnbr_fd` - Schreibt eine Zahl zu einem File Descriptor.
+
+### Zusätzliche Funktionen
+
+- `ft_calloc` - Reserviert Speicher und initialisiert ihn mit Null. Gibt einen Zeiger auf den reservierten Speicher zurück.
+- `ft_striteri` - Wendet eine Funktion auf jedes Zeichen eines Strings an, der Index des Zeichens wird ebenfalls übergeben.
