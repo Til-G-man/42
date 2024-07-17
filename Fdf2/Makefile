@@ -1,7 +1,8 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-include $(sources.mk)
+SRC = main.c \
+file1.c \
 
 NAME = fdf
 
@@ -11,7 +12,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $(OBJ).c
+	$(CC) $(CFLAGS) -c $@
 
 clean:
 	rm -f $(OBJ)
