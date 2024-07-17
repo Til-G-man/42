@@ -6,12 +6,13 @@
 #    By: tilman <tilman@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 17:41:33 by tilman            #+#    #+#              #
-#    Updated: 2024/07/15 17:51:37 by tilman           ###   ########.fr        #
+#    Updated: 2024/07/17 13:11:26 by tilman           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
+#Don't forget the flags !!!!!!!!!!!!!!!!!!!!!
 CFLAGS =
 MLX = minilibx-linux
 MLX_FLAGS = -L$(MLX) -lmlx -lXext -lX11

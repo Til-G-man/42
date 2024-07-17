@@ -6,13 +6,13 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:20:48 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/15 17:20:50 by tilman           ###   ########.fr       */
+/*   Updated: 2024/07/17 13:11:54 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef READ_FILE_H
 # define READ_FILE_H
 
-
+void	read_file(char *FILE);
 
 #endif

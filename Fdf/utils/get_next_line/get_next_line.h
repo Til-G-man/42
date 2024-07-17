@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:19:36 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/07/03 12:53:43 by tilman           ###   ########.fr       */
+/*   Updated: 2024/07/17 12:56:07 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 int		ft_strlen(char *s);
 char	*ft_strdup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin_free(char *s1, char *s2);
 char	*ft_loop(char *str1, char *str2);
 int		have_n(char	*temp);
 char	*print_line(char **temp);

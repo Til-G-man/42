@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:00:34 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/03 14:07:49 by tilman           ###   ########.fr       */
+/*   Updated: 2024/07/17 12:56:00 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strdup(char *str, int len)
 // gets 2 strings as input
 // creates a new sting and put both strings inside (fist s1)
 // returns the new string and free s1 (s2 is still alloc)
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
 	size_t	i;
 	int		len;
