@@ -5,7 +5,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -std=c11
 
 # Ziel-Datei
-TARGET = mein_programm
+TARGET = fdf
 
 # Quellcodedateien
 include sources.mk

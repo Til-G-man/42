@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.h                                        :+:      :+:    :+:   */
+/*   set_file_info.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:20:48 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/17 17:47:47 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:23:39 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include "../Get_next_line/get_next_line.h"
 #include "../Libft/libft.h"
-void	read_file(char *FILE);
+#include "../utils.h"
+
+void	set_file_info(struct s_Fileinfo *file);
+int	get_num(char *str);
 
 #endif

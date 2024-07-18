@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   get_num.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 19:29:46 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/07/18 21:34:55 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/07/18 19:21:17 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/07/18 21:25:25 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "set_file_info.h"
 
-
-# include "Get_next_line/get_next_line.h"
-# include "Libft/libft.h"
-# include "Set_file_info/set_file_info.h"
-
-struct	s_Fileinfo
+int	get_num(char *str)
 {
-	int		fd;
-	int		width_win;
-	int		height_win;
-	int		**array_points;
-	int		*array_color;
-	int		array_x;
-	int		array_y;
-	int		check;
+	char	**str_arr;
 
-};
-
-#endif
+	*str_arr = ft_split(str, ' ');
+	printf("str_arr:'%s'\n", str);
+	return 0;
+}

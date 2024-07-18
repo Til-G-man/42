@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    sources.mk                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tilman <tilman@student.42.fr>              +#+  +:+       +#+         #
+#    By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/17 17:34:17 by tgluckli          #+#    #+#              #
-#    Updated: 2024/07/18 02:57:53 by tilman           ###   ########.fr        #
+#    Updated: 2024/07/18 21:22:52 by tgluckli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = main.c \
-       utils/Read_file/read_file.c \
+       utils/Set_file_info/set_file_info.c \
        utils/Get_next_line/get_next_line.c \
        utils/Get_next_line/get_next_line_utils.c \
        utils/Libft/ft_bzero.c \

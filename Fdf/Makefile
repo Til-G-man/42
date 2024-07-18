@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tilman <tilman@student.42.fr>              +#+  +:+       +#+         #
+#    By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 17:41:33 by tilman            #+#    #+#              #
-#    Updated: 2024/07/18 02:51:05 by tilman           ###   ########.fr        #
+#    Updated: 2024/07/18 17:59:39 by tgluckli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CFLAGS = -Wall -Wextra -std=c11 -fPIE
 LDFLAGS = -fPIE
 
 # Ziel-Datei
-TARGET = mein_programm
+TARGET = fdf
 
 # Quellcodedateien
 include sources.mk
