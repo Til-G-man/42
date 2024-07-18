@@ -3,38 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+         #
+#    By: tilman <tilman@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 17:41:33 by tilman            #+#    #+#              #
-#    Updated: 2024/07/17 18:05:26 by tgluckli         ###   ########.fr        #
+#    Updated: 2024/07/18 02:51:05 by tilman           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# Compiler
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
-AR = ar
+# Compiler-Flags
+CFLAGS = -Wall -Wextra -std=c11 -fPIE
 
-ARFLAGS = rcs
+# Linker-Flags
+LDFLAGS = -fPIE
 
-NAME = libftprintf.a
+# Ziel-Datei
+TARGET = mein_programm
 
-SRC = main.c
+# Quellcodedateien
+include sources.mk
 
-OBJ = $(SRC:.c=.o)
+# Objekt-Dateien
+OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+# Regel für das Ziel
+$(TARGET): $(OBJS)
+	$(CC) $(LDFLAGS) -o $(TARGET) $(OBJS)
 
-$(NAME): $(OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
-
+# Regel für die Erstellung der Objekt-Dateien
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Aufräumen
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS) $(TARGET)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(TARGET)
 
-re: fclean all
+re: fclean $(TARGET)
+
+.PHONY: all clean fclean re
+

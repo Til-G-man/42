@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:20:44 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/17 17:19:05 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:47:12 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@ This Funktion gets a fd and returns its values in an 3D array
 #include "read_file.h"
 
 
-void	read_file(char *path)
+void	read_file(int fd)
 {
 	int	fd;
 	char *line;
 	char *file;
 
-	printf("Reading file");
+	printf("Reading file\n");
 	file = 0;
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Error while open file\n");
-		exit(1);
-	}
 	line = get_next_line(fd);
 	while(line)
 	{
@@ -38,4 +32,5 @@ void	read_file(char *path)
 		line = get_next_line(fd);
 	}
 	printf("\nFile:\n '%s'", file);
+
 }

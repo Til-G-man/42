@@ -1,23 +1,33 @@
+# Compiler
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
 
-SRC = main.c \
-file1.c \
+# Compiler-Flags
+CFLAGS = -Wall -Wextra -std=c11
 
-NAME = fdf
+# Ziel-Datei
+TARGET = mein_programm
 
-all: $(NAME)
+# Quellcodedateien
+include sources.mk
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+# Objekt-Dateien
+OBJS = $(SRCS:.c=.o)
 
+# Regel für das Ziel
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+# Regel für die Erstellung der Objekt-Dateien
 %.o: %.c
-	$(CC) $(CFLAGS) -c $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
+# Aufräumen
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS) $(TARGET)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
