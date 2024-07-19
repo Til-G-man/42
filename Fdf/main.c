@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:08:44 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/18 21:41:33 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:29:32 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 //#include <unistd.h>
 #include <stdio.h>
 #include "utils/utils.h"
+
+int	read_3d(int )
 
 int main(int argc, char *argv[])
 {
@@ -40,15 +42,7 @@ int main(int argc, char *argv[])
 	printf("fd: %d, %i\n", file->fd, file->fd);
 	set_file_info(file);
 	x, y = 0;
-	printf("array:\n");
-	//while (file->array_points[y][x])
-	//{
-	//	arr = file->array_points[y][x];
-	//	while (arr[x])
-	//	{
-	//		printf("[%i, %i]", arr[x][0], )
-	//	}
-	//}
+
 	printf("fd: %d, %i\n", file->fd, file->fd);
 	file->check = 0;
 	printf("\ncheck: %i shoud be: 0\n", file->check);

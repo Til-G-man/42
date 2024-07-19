@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   array_lib.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 19:29:46 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/07/19 14:57:57 by tilman           ###   ########.fr       */
+/*   Created: 2024/07/19 17:09:15 by tilman            #+#    #+#             */
+/*   Updated: 2024/07/19 17:10:27 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#define ARRAY_LIB_H
+# ifndef ARRAY_LIB_H
 
-struct	s_Fileinfo
+struct array_entry_3d
 {
-	int		fd;
-	int		width_win;
-	int		height_win;
-	int		**array_points;
-	int		*array_color;
-	int		array_x;
-	int		array_y;
-	int		check;
-
+	int	x;
+	int	y;
+	int	z;
+	int	(*array)[];
 };
 
-# include "Get_next_line/get_next_line.h"
-# include "Libft/libft.h"
-# include "Set_file_info/set_file_info.h"
-
-#endif
+# endif
