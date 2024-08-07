@@ -1,0 +1,5 @@
+{
+	"files.associations": {
+		"lib../ft_printf.h": "c"
+	}
+}

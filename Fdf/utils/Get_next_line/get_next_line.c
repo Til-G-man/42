@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:20:17 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/07/18 21:44:28 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/08/07 22:52:32 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*get_next_line(int fd)
 	static char		*temp;
 	char			*buffer;
 	int				bytes_read;
-	printf("\nget_next_line\n");
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (free(temp), temp = NULL, NULL);
 	if (have_n(temp))

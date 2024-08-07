@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:00:34 by tilman            #+#    #+#             */
-/*   Updated: 2024/07/18 21:10:41 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/08/07 22:52:45 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,5 @@ char	*print_line(char **temp)
 	if (str)
 		free(str);
 	str = NULL;
-	printf("\nGNL:\nreturn line: '%s'\n", return_line);
 	return (return_line);
 }

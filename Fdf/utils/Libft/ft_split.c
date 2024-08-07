@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:22:40 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/07 14:46:26 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/08/07 23:54:50 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-#include "libft.h"
+#include <stdio.h>
 
 static int	wordsize(char const *s, char c)
 {
@@ -88,3 +87,16 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (write_array(array, s, c));
 }
+
+//make
+//cc ft_split.c libft.a
+//int main(void)
+//{
+//	char	*str = "Hallo";
+//	char	**test;
+
+//	test = ft_split(str, ' ');
+//	printf("%s\n", test[0]);
+//	if (test[1])
+//		printf("%s\n", test[1]);
+//}
