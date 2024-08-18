@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 11:29:38 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/04/26 11:36:51 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/26 11:52:00 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/08/18 12:53:48 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+int	ft_putchar_count(char c, int fd)
 {
-	unsigned int	index;
-
-	index = 0;
-	while (s[index])
-	{
-		f(index, &s[index]);
-		index++;
-	}
+	write(fd, &c, 1);
+	return (1);
 }

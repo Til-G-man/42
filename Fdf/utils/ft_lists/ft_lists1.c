@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 19:18:26 by tilman            #+#    #+#             */
-/*   Updated: 2024/08/07 23:44:14 by tilman           ###   ########.fr       */
+/*   Updated: 2024/08/08 10:59:45 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_list	*init_list(int array[])
 }
 
 //array[x, y, z, colour]
-t_list *append(t_list *listelement, int array[]) {
+t_list *append(t_list *listelement, int array[])
+{
 	t_list *new_node;
 
 	if (listelement == NULL)

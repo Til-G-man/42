@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 19:12:24 by tilman            #+#    #+#             */
-/*   Updated: 2024/08/07 23:09:40 by tilman           ###   ########.fr       */
+/*   Updated: 2024/08/08 11:55:02 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*delete_list(t_list *listelement)
 	return (NULL);
 }
 
-void	print_listelement(t_list *element)
+void	print_node(t_list *element)
 {
 	if (element != NULL)
 	{
@@ -55,28 +55,28 @@ int	print_list(t_list *element)
 		element = element->before;
 	while (element->next != NULL)
 	{
-		print_listelement(element);
+		print_node(element);
 		element = element-> next;
 	}
-	print_listelement(element);
+	print_node(element);
 	return (0);
 }
 
-int	count_list(t_list *t_list)
+int	count_list(t_list *list)
 {
 	int	count;
 
 	count = 0;
-	if (!t_list)
+	if (!list)
 		return (0);
-	while (t_list->before != NULL)
-		t_list = t_list->before;
-	while (t_list->next != NULL)
+	while (list->before != NULL)
+		list = list->before;
+	while (list->next != NULL)
 	{
 		count++;
-		t_list = t_list->next;
+		list = list->next;
 	}
-	if (t_list != NULL)
+	if (list != NULL)
 		count++;
 	return (count);
 }

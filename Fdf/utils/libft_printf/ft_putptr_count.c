@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   ft_putptr_count.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:28:07 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/14 13:44:38 by tgluckli         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:50:26 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	fck25lines(unsigned long num)
 	return (0);
 }
 
-int	ft_putptr(unsigned long num)
+int	ft_putptr_count(unsigned long num)
 {
 	char	*hex_digits;
 	char	buffer[20];

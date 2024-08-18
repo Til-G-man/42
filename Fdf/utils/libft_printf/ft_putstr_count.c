@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 18:10:50 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/05/06 13:54:04 by tgluckli         ###   ########.fr       */
+/*   Created: 2024/04/26 12:22:41 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/08/18 12:46:13 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "ft_printf.h"
+
+int	ft_putstr_count(char *s, int fd)
 {
-	if (32 <= c && c <= 126)
-		return (16384);
-	else
-		return (0);
+	if (s == NULL)
+	{
+		write(fd, "(null)", 6);
+		return (6);
+	}
+	write(fd, s, ft_strlen(s));
+	return ((int) ft_strlen(s));
 }
