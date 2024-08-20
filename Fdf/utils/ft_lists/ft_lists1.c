@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 19:18:26 by tilman            #+#    #+#             */
-/*   Updated: 2024/08/08 10:59:45 by tilman           ###   ########.fr       */
+/*   Updated: 2024/08/20 16:24:31 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ t_list	*init_list(int array[])
 	new_node->y = array[1];
 	new_node->z = array[2];
 	if (array[3])
-		new_node->colour = array[3];
+		new_node->colour_r = array[3];
+	if (array[4])
+		new_node->colour_g = array[4];
+	if (array[5])
+		new_node->colour_b = array[5];
 	new_node->next = NULL;
-	free(array);
 	return (new_node);
 }
 
@@ -41,6 +44,7 @@ t_list *append(t_list *listelement, int array[])
 
 	if (listelement == NULL)
 		return (init_list(array));
+	printf("try to append to list\n");
 	while (listelement->next != NULL)
 		listelement = listelement->next;
 
@@ -54,11 +58,15 @@ t_list *append(t_list *listelement, int array[])
 	new_node->x = array[0];
 	new_node->y = array[1];
 	new_node->z = array[2];
-	if (array[3])
-		new_node->colour = array[3];
+	if (array[3] && array[4] && array[5])
+	{
+		new_node->colour_r = array[3];
+		new_node->colour_g = array[4];
+		new_node->colour_b = array[5];
+	}
 	new_node->next = NULL;
 	listelement->next = new_node;
-	free(array);
+	printf("append done\n");
 	return new_node;
 }
 

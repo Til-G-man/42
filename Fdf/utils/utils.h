@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:29:46 by tgluckli          #+#    #+#             */
-/*   Updated: 2024/08/18 11:53:15 by tilman           ###   ########.fr       */
+/*   Updated: 2024/08/20 16:19:45 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,21 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+#define GREEN "\033[0;32m"
+#define RED "\033[0;31m"
+#define RESET "\033[0m"
+#define ORANGE "\033[38;2;255;165;0m"
+#define YELLOW "\033[33m"
+
 typedef struct list
 {
 	struct list	*before;
 	int			x;
 	int			y;
 	int			z;
-	int			colour;
+	int			colour_r;
+	int			colour_g;
+	int			colour_b;
 	struct list	*next;
 }	t_list;
 

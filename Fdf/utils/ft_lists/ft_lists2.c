@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 19:12:24 by tilman            #+#    #+#             */
-/*   Updated: 2024/08/08 11:55:02 by tilman           ###   ########.fr       */
+/*   Updated: 2024/08/20 16:20:57 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ void	print_node(t_list *element)
 {
 	if (element != NULL)
 	{
-		printf("x: %d\n"
+		printf("%sx: %d\n"
 			"y: %d\n"
 			"z: %d\n"
-			"colour: %d\n"
+			"colour_r: %d\n"
+			"colour_g: %d\n"
+			"colour_b: %d\n"
 			"before: %p\n"
 			"next: %p\n"
-			"_____________\n",
-			element->x, element->y, element->z,
-			element->colour, element->before, element->next);
+			"_____________%s\n",
+			ORANGE, element->x, element->y, element->z,
+			element->colour_r, element->colour_g, element->colour_b, element->before, element->next, RESET);
 	}
 }
 
