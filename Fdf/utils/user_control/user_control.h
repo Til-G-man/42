@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.h                                        :+:      :+:    :+:   */
+/*   user_control.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 23:26:36 by tilman            #+#    #+#             */
-/*   Updated: 2024/08/22 14:37:33 by tilman           ###   ########.fr       */
+/*   Created: 2024/08/23 16:13:59 by tilman            #+#    #+#             */
+/*   Updated: 2024/08/23 16:17:48 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_FILE_H
-# define READ_FILE_H
+#ifndef USER_CONTROL_H
+# define USER_CONTROL_H
 
-# include "../utils.h"
-
-t_file	*read_file(t_file *file);
+#include "../utils.h"
 
 #endif

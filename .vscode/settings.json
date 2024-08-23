@@ -4,5 +4,6 @@
 		"libft.h": "c",
 		"libft_printf.h": "c",
 		"get_next_line.h": "c"
-	}
+	},
+	"C_Cpp.dimInactiveRegions": false
 }

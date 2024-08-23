@@ -6,7 +6,7 @@
 /*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:08:44 by tilman            #+#    #+#             */
-/*   Updated: 2024/08/20 16:25:58 by tilman           ###   ########.fr       */
+/*   Updated: 2024/08/23 16:12:59 by tilman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,22 @@
 #include <stdio.h>
 #include "utils/utils.h"
 
+void print_file(t_file *file)
+{
+    if (file == NULL)
+    {
+        printf("File is NULL\n");
+        return;
+    }
+    printf("max_x: %d\n", file->max_x);
+    printf("max_y: %d\n", file->max_y);
+    printf("max_z: %d\n", file->max_z);
+    printf("min_z: %d\n", file->min_z);
+    printf("fd: %d\n", file->fd);
+    printf("list: %p\n", (void *)file->list); // Zeiger auf die Liste ausgeben
+    printf("win_x: %d\n", file->win_x);
+    printf("win_y: %d\n", file->win_y);
+}
 
 int main(int argc, char *argv[])
 {
@@ -40,10 +56,17 @@ int main(int argc, char *argv[])
 	printf("Start reading file: '%i'\n", file->fd);
 	read_file(file);
 	printf("count: %i\n", count_list(file->list));
+	printf("show graphic\n");
+	show_graphic(file);
+	printf("show graphic done\n");
+	printf("user control\n");
+	user_control(file);
 	printf("\nBeende das programm\n");
 	printf("final list:\n");
-	print_list(file->list);
+	//print_list(file->list);
+	//print_file(file);
 	delete_list(file->list);
 	printf("Program beendet.\n");
 	return (0);
 }
+

@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.h                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tilman <tilman@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tgluckli <tgluckli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 23:26:36 by tilman            #+#    #+#             */
-/*   Updated: 2024/08/22 14:37:33 by tilman           ###   ########.fr       */
+/*   Created: 2024/04/22 12:16:43 by tgluckli          #+#    #+#             */
+/*   Updated: 2024/05/06 13:54:35 by tgluckli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_FILE_H
-# define READ_FILE_H
-
-# include "../utils.h"
-
-t_file	*read_file(t_file *file);
-
-#endif
+int	ft_tolower(int c)
+{
+	if ('A' <= c && c <= 'Z')
+		return (c + 32);
+	return (c);
+}
